@@ -1,0 +1,171 @@
+/* #invoice-POS {
+  box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.5);
+  padding: 4mm;
+  margin: 0 auto;
+  width: 76mm;
+  background: #fff;
+}
+
+::selection {
+  background: #f31544;
+  color: #fff;
+}
+::moz-selection {
+  background: #f31544;
+  color: #fff;
+}
+h1 {
+  font-size: 1.5em;
+  color: #222;
+}
+h2 {
+  font-size: 0.9em;
+}
+h3 {
+  font-size: 1.2em;
+  font-weight: 300;
+  line-height: 2em;
+}
+p {
+  font-size: 0.7em;
+  color: #666;
+  line-height: 1.2em;
+}
+
+#top,
+#mid,
+#bot {
+  border-bottom: 1px solid #eee;
+}
+
+#top {
+  min-height: 100px;
+}
+
+#bot {
+  min-height: 50px;
+}
+
+#top .logo {
+  height: 60px;
+  width: 60px;
+  border-radius: 20%;
+  background: url(https://yt3.ggpht.com/ytc/AKedOLRB0XGxEABopk8qJ2-CcnA0UoVyC7TarDi5PJwGIQ=s176-c-k-c0x00ffffff-no-rj-mo)
+    no-repeat;
+  background-size: 50px 50px;
+}
+.clientlogo {
+  float: left;
+  height: 60px;
+  width: 60px;
+  background: url(http://michaeltruong.ca/images/client.jpg) no-repeat;
+  background-size: 60px 60px;
+  border-radius: 50px;
+}
+.info {
+  display: block;
+  margin-left: 0;
+}
+.title {
+  float: right;
+}
+.title p {
+  text-align: right;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.tabletitle {
+  font-size: 0.5em;
+  background: #eee;
+}
+.service {
+  border-bottom: 1px solid #eee;
+}
+.item {
+  width: 24mm;
+}
+.itemtext {
+  font-size: 0.5em;
+}
+
+#legalcopy {
+  margin-top: 5mm;
+} */
+.name {
+  /* margin-top: 100px; */
+  color: blue;
+  /* right: 360px; */
+  margin-left: 700px;
+  border: 2px solid red;
+
+  margin-top: -50px;
+  /* margin-left: 131px; */
+}
+.age {
+  /* margin-top: 26.5px; */
+  margin-top: 100vh;
+  margin-left: 90px;
+  /* border: 2px solid red; */
+}
+.date {
+  margin-left: 438.5px;
+}
+.name {
+  margin-top: 204px;
+  margin-left: 121px;
+}
+
+.age {
+  margin-top: 26.5px;
+  margin-left: 57px;
+}
+
+.date {
+  margin-left: 438.5px;
+}
+
+.chart {
+  margin-top: 94.5px;
+}
+
+.currClass {
+  margin-left: 45.5px;
+}
+.currPeriod {
+  margin-left: 65px;
+}
+.currFrom {
+  margin-left: 76px;
+}
+.currTo {
+  margin-left: 76px;
+}
+.prev1 {
+  margin-top: 56.7px;
+}
+.prevClass {
+  margin-left: 301.6px;
+}
+.prevTicket {
+  margin-left: 272.2px;
+}
+.prev2 {
+  margin-top: 18.9px;
+}
+.prevFrom {
+  margin-left: 37.8px;
+}
+.prevTo {
+  margin-left: 94.5px;
+}
+.big {
+  right: 0;
+  width: 90vh;
+  margin-right: 0;
+  /* text-align: right; */
+  margin-top: 220px;
+  margin-left: 83vh;
+  border: 2px solid red;
+}

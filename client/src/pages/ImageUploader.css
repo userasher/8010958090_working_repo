@@ -1,0 +1,36 @@
+/* ImageUploader.css */
+.image-uploader {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.image-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.image-card {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 400px; /* Set a fixed height for the image card */
+  overflow: hidden; /* Hide any overflow from taller images */
+}
+
+.uploaded-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+/* Optional: Add hover effect */
+.image-card:hover {
+  transform: scale(1.05);
+}

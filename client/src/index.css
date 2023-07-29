@@ -1,0 +1,42 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* loader */
+.spinner {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.383);
+}
+.form-btn {
+  width: 250px !important;
+  margin-top: 30px !important ;
+}
+/* Add this CSS in your main stylesheet or create a new CSS file */
+.document-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px; /* Reduce the gap between images */
+}
+
+.document-wrapper {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s; /* Add transition for smooth zoom-in effect */
+}
+
+.document-wrapper:hover {
+  transform: scale(1.1); /* Zoom-in effect on hover */
+}
+
+.uploaded-document {
+  width: 100%;
+  height: auto;
+  max-height: 300px; /* Adjust the maximum height for the image */
+  object-fit: contain;
+  border-radius: 5px;
+}
