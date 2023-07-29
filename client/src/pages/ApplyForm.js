@@ -1,5 +1,6 @@
 import React from "react";
 import Layout from "../components/Layout";
+import { useState } from "react";
 import { Col, Form, Input, Row, DatePicker, message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -54,22 +55,26 @@ const ApplyForm = () => {
           </Col>
           <Col xs={24} md={24} lg={8}>
             <Form.Item
-              label="Documents"
-              name="link"
-              required
-              rules={[{ required: true }]}
-            >
-              <Input type="text" placeholder="put your documents link here" />
-            </Form.Item>
-          </Col>
-          <Col xs={24} md={24} lg={8}>
-            <Form.Item
               label="Last Name"
               name="lastName"
               required
               rules={[{ required: true }]}
             >
               <Input type="text" placeholder="your last name" />
+            </Form.Item>
+          </Col>
+          <Col xs={24} md={24} lg={8}>
+            <Form.Item
+              label="Documents"
+              name="link"
+              // required
+              // rules={[{ required: true }]}
+            >
+              <Input type="text" placeholder="put your documents link here" />
+              <small>
+                Create a drive link and upload you'r college ID ,cast validity
+                (SC/ST), Aadhaar Card
+              </small>
             </Form.Item>
           </Col>
 
@@ -83,24 +88,15 @@ const ApplyForm = () => {
               <Input type="text" placeholder="your contact no" />
             </Form.Item>
           </Col>
+
           <Col xs={24} md={24} lg={8}>
             <Form.Item
-              label="Your Age"
-              name="age"
-              required
-              rules={[{ required: true }]}
-            >
-              <Input type="text" placeholder="your age" />
-            </Form.Item>
-          </Col>
-          <Col xs={24} md={24} lg={8}>
-            <Form.Item
-              label="Enter you'r Birthdate"
+              label="Birth Date"
               name="birth"
               required
               rules={[{ required: true }]}
             >
-              <Input type="text" placeholder="your Birthday" />
+              <DatePicker />
             </Form.Item>
           </Col>
           <Col xs={24} md={24} lg={8}>
@@ -123,9 +119,19 @@ const ApplyForm = () => {
               <Input type="text" placeholder="sex" />
             </Form.Item>
           </Col>
+          <Col xs={24} md={24} lg={8}>
+            <Form.Item
+              label="Address"
+              name="address"
+              required
+              rules={[{ required: true }]}
+            >
+              <Input type="text" placeholder="Your address" />
+            </Form.Item>
+          </Col>
         </Row>
         {/* railway details */}
-        <h4> Railway Form Details </h4>
+        <h4> Current Form Details </h4>
         <Row gutter={20}>
           <Col xs={24} md={24} lg={8}>
             <Form.Item
@@ -158,16 +164,7 @@ const ApplyForm = () => {
               <Input type="text" placeholder="your caste" />
             </Form.Item>
           </Col>
-          <Col xs={24} md={24} lg={8}>
-            <Form.Item
-              label="Address"
-              name="address"
-              required
-              rules={[{ required: true }]}
-            >
-              <Input type="text" placeholder="Your address" />
-            </Form.Item>
-          </Col>
+
           <Col xs={24} md={24} lg={8}>
             <Form.Item
               label="Season Ticket No"

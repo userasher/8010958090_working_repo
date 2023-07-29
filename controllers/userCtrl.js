@@ -83,6 +83,24 @@ const authController = async (req, res) => {
 const authApplyController = async (req, res) => {
   try {
     const newRailway = await railwayModel({ ...req.body, status: "pending" });
+    console.log(req.body);
+    console.log(req.body.birth);
+    let dateString = req.body.birth;
+    /////
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    // await railwayModel.findByIdAndUpdate()
+    //
+    newRailway.age = age;
+
+    //////
+
     await newRailway.save();
     const adminUser = await userModel.findOne({ isAdmin: true });
     const notifcation = adminUser.notifcation;

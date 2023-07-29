@@ -227,60 +227,68 @@ const Doctors = () => {
       title: "reg",
       dataIndex: "actions",
       render: (id, record) => (
-        <>
-          <Button type="primary" onClick={showModal}>
-            Ticket
-          </Button>
-
-          <Modal
-            title="Basic Modal"
-            open={isModalOpen}
-            onOk={handleOk}
-            onCancel={handleCancel}
-          >
-            <Form>
-              <input
-                type="text"
-                value={regno}
-                onChange={(e) => {
-                  setRegno(e.target.value);
-                }}
-              ></input>
-              <button onClick={() => addRegNo(record, regno)}>Submit</button>
-            </Form>
-          </Modal>
-        </>
-
-        // <Form>
-        //   <input
-        //     type="text"
-        //     value={regno}
-        //     onChange={(e) => {
-        //       setRegno(e.target.value);
-        //     }}
-        //   ></input>
-        //   <button onClick={() => addRegNo(record, regno)}>Submit</button>
-        // </Form>
+        <Form>
+          <input
+            type="text"
+            value={regno}
+            onChange={(e) => {
+              setRegno(e.target.value);
+            }}
+          ></input>
+          <button onClick={() => addRegNo(record, regno)}>Submit</button>
+        </Form>
+        // <>
+        //   <Button type="primary" onClick={showModal}>
+        //     Open Modal
+        //   </Button>
+        //   <Modal
+        //     title="Basic Modal"
+        //     open={isModalOpen}
+        //     onOk={handleOk}
+        //     onCancel={handleCancel}
+        //   >
+        //     <Form>
+        //       <input
+        //         type="text"
+        //         value={regno}
+        //         onChange={(e) => {
+        //           setRegno(e.target.value);
+        //         }}
+        //       ></input>
+        //       <button onClick={() => addRegNo(record, regno)}>Submit</button>
+        //     </Form>
+        //   </Modal>
+        // </>
       ),
+      // <Form>
+      //   <input
+      //     type="text"
+      //     value={regno}
+      //     onChange={(e) => {
+      //       setRegno(e.target.value);
+      //     }}
+      //   ></input>
+      //   <button onClick={() => addRegNo(record, regno)}>Submit</button>
+      // </Form>
     },
-    {
-      title: "Actions",
-      dataIndex: "actions",
-      render: (text, record) => (
-        <div className="d-flex">
-          {Users === false ? (
-            <button
-              className="btn btn-success"
-              onClick={() => handleAccountStatustoVerify(record, "approved")}
-            >
-              Verify
-            </button>
-          ) : (
-            <button className="btn btn-danger">Verified</button>
-          )}
-        </div>
-      ),
-    },
+    // {
+    //   title: "Actions",
+    //   dataIndex: "actions",
+    //   render: (text, record) => (
+    //     <div className="d-flex">
+    //       {Users === false ? (
+    //         <button
+    //           className="btn btn-success"
+    //           onClick={() => handleAccountStatustoVerify(record, "approved")}
+    //         >
+    //           Verify
+    //         </button>
+    //       ) : (
+    //         <button className="btn btn-danger">Verified</button>
+    //       )}
+    //     </div>
+    //   ),
+    // },
     {
       title: "Railway ticket no",
       dataIndex: "railwayTicketNo",

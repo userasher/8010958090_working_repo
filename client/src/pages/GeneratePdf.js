@@ -35,6 +35,14 @@ const GeneratePdf = () => {
 
   const columns = [
     {
+      title: "Ticket No",
+      dataIndex: "railwayTicketNo",
+    },
+    {
+      title: "issued Date",
+    },
+
+    {
       title: "Name",
       dataIndex: "name",
       render: (text, record) => (
@@ -44,31 +52,18 @@ const GeneratePdf = () => {
       ),
     },
     {
-      title: "Status",
-      dataIndex: "status",
-      render(text, record) {
-        return {
-          props: {
-            style: {
-              background: text === "pending" ? "red" : "green",
-            },
-          },
-          children: <div>{text}</div>,
-        };
-      },
-    },
-    {
-      title: "phone",
-      dataIndex: "phone",
-    },
-    {
-      title: "Age",
-      dataIndex: "age",
-    },
-    {
       title: "sex",
       dataIndex: "sex",
     },
+    {
+      title: "Birth Date",
+      dataIndex: "birth",
+    },
+    {
+      title: "Quaterly/Monthly",
+      dataIndex: "period",
+    },
+
     {
       title: "from",
       dataIndex: "from",
@@ -78,40 +73,53 @@ const GeneratePdf = () => {
       dataIndex: "to",
     },
     {
-      title: "Season Ticket No",
-      dataIndex: "seasonticketNo",
+      title: "Caste",
+      dataIndex: "caste",
     },
     {
-      title: "Reason",
-      dataIndex: "reason",
+      title: "Address",
+      dataIndex: "address",
     },
-    {
-      title: "Data",
-      dataIndex: "timings",
-      render: (record) => {
-        return (
-          <div>
-            <p>
-              {moment(record[0]).format("DD-MM-YYYY")} to{" "}
-              {moment(record[1]).format("DD-MM-YYYY")}
-            </p>
-          </div>
-        );
-      },
-    },
+    // {
+    //   title: "Status",
+    //   dataIndex: "status",
+    //   render(text, record) {
+    //     return {
+    //       props: {
+    //         style: {
+    //           background: text === "pending" ? "red" : "green",
+    //         },
+    //       },
+    //       children: <div>{text}</div>,
+    //     };
+    //   },
+    // },
+
+    // {
+    //   title: "Data",
+    //   dataIndex: "timings",
+    //   render: (record) => {
+    //     return (
+    //       <div>
+    //         <p>
+    //           {moment(record[0]).format("DD-MM-YYYY")} to{" "}
+    //           {moment(record[1]).format("DD-MM-YYYY")}
+    //         </p>
+    //       </div>
+    //     );
+    //   },
+    // },
   ];
 
   return (
     <>
       <Layout>
-        Printing Press
+        <h1 className="text-center">Applicants data</h1>
         <div
           ref={componentRef}
           style={{ width: "100%", height: window.innerHeight }}
         >
-          <div className="text-center my-3 border py-2 ">
-            <h1>Applicants data</h1>
-          </div>
+          <div className="text-center my-3 border py-2 "></div>
           <Table columns={columns} dataSource={users} />
           <button onClick={handlePrint}>Print this out</button>
         </div>

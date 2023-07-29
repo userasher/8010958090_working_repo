@@ -18,7 +18,8 @@ const railwaySchema = new mongoose.Schema(
     },
     age: {
       type: String,
-      required: [true, "age is required"],
+      // required: [true, "age is required"],
+      default: "11",
     },
     birth: {
       type: String,
