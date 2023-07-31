@@ -228,14 +228,39 @@ const Doctors = () => {
       dataIndex: "actions",
       render: (id, record) => (
         <Form>
-          <input
+          <Input
             type="text"
             value={regno}
             onChange={(e) => {
-              setRegno(e.target.value);
+              if (e.target.value.length <= 8) {
+                setRegno(e.target.value);
+              }
             }}
-          ></input>
-          <button onClick={() => addRegNo(record, regno)}>Submit</button>
+            style={{
+              fontSize: "12px",
+              padding: "6px",
+              borderRadius: "4px",
+              border: "1px solid #ccc",
+              width: "150px",
+            }}
+            maxLength={8}
+          />
+
+          <button
+            className="btn btn-success"
+            style={{
+              fontSize: "12px",
+              padding: "6px 12px",
+              borderRadius: "4px",
+              backgroundColor: "green",
+              color: "white",
+              border: "none",
+              cursor: "pointer",
+            }}
+            onClick={() => addRegNo(record, regno)}
+          >
+            Submit
+          </button>
         </Form>
         // <>
         //   <Button type="primary" onClick={showModal}>

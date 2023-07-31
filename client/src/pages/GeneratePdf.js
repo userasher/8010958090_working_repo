@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import { Col, Table, Tag } from "antd";
 import moment from "moment";
+// import "./admin/InvoiceStyles.css";
 
 const GeneratePdf = () => {
   const [users, setUsers] = useState([]);
@@ -37,6 +38,7 @@ const GeneratePdf = () => {
     {
       title: "Ticket No",
       dataIndex: "railwayTicketNo",
+      style: { border: "1px solid black", padding: "8px" },
     },
     {
       title: "issued Date",
@@ -111,6 +113,21 @@ const GeneratePdf = () => {
     // },
   ];
 
+  // return (
+  //   <>
+  //     <Layout>
+  //       <h1 className="text-center">Applicants data</h1>
+  //       <div
+  //         ref={componentRef}
+  //         style={{ width: "100%", height: window.innerHeight }}
+  //       >
+  //         <div className="text-center my-3 border py-2 "></div>
+  //         <Table columns={columns} dataSource={users} />
+  //         <button onClick={handlePrint}>Print this out</button>
+  //       </div>
+  //     </Layout>
+  //   </>
+  // );
   return (
     <>
       <Layout>
@@ -120,7 +137,11 @@ const GeneratePdf = () => {
           style={{ width: "100%", height: window.innerHeight }}
         >
           <div className="text-center my-3 border py-2 "></div>
-          <Table columns={columns} dataSource={users} />
+          <Table
+            columns={columns}
+            dataSource={users}
+            // style={{ border: "1px solid black" }} // Add inline border style to the Table
+          />
           <button onClick={handlePrint}>Print this out</button>
         </div>
       </Layout>

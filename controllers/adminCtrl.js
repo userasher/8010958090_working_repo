@@ -64,7 +64,9 @@ const getAllDoctorsController = async (req, res) => {
 
 const getAllDoctorsPrintController = async (req, res) => {
   try {
-    const doctors = await railwayModel.find({ status: "approved" });
+    const doctors = await railwayModel
+      .find({ status: "approved" })
+      .sort({ createdAt: -1 });
     res.status(200).send({
       success: true,
       message: "Doctors Data list",
