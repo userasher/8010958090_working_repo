@@ -9,6 +9,10 @@ const {
   addtheRailwayNo,
   addTicketNO,
   getAllDoctorsPrintController,
+  getHome,
+  saveHome,
+  updateHome,
+  deleteHome,
 } = require("../controllers/adminCtrl");
 const router = express.Router();
 // get method || users
@@ -27,6 +31,10 @@ router.post(
   changeAccountStatusController
 );
 router.post("/addRailwayno", authMiddleware, addtheRailwayNo);
+// router.get("/homeget", getHome);
+// router.post("/updateHome", updateHome);
+// router.post("/deletehome", deleteHome);
+// router.post("/homesave", saveHome);
 router.post(
   "/changeAccountStatustoVerify",
   authMiddleware,

@@ -5,6 +5,7 @@ const ejs = require("ejs");
 const { response } = require("express");
 const pdf = require("html-pdf");
 const path = require("path");
+const homeModel = require("../models/homeModel");
 
 const getAllUsersController = async (req, res) => {
   try {
@@ -23,9 +24,29 @@ const getAllUsersController = async (req, res) => {
     });
   }
 };
+
+// const getAllDoctorsController = async (req, res) => {
+//   try {
+//     const doctors = await railwayModel.find({});
+//     res.status(200).send({
+//       success: true,
+//       message: "Doctors Data list",
+//       data: doctors,
+//     });
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).send({
+//       success: false,
+//       message: "error while getting doctors data",
+//       error,
+//     });
+//   }
+// };
 const getAllDoctorsController = async (req, res) => {
   try {
-    const doctors = await railwayModel.find({});
+    const doctors = await railwayModel.find({}).sort({ createdAt: -1 });
+    // 'createdAt' is the field added by the 'timestamps' option in the schema, and -1 means descending order (latest first)
+
     res.status(200).send({
       success: true,
       message: "Doctors Data list",
@@ -40,6 +61,7 @@ const getAllDoctorsController = async (req, res) => {
     });
   }
 };
+
 const getAllDoctorsPrintController = async (req, res) => {
   try {
     const doctors = await railwayModel.find({ status: "approved" });
@@ -192,6 +214,31 @@ const addtheRailwayNo = async (req, res) => {
     });
   }
 };
+const getHome = async (req, res) => {
+  const todo = await homeModel.find();
+  res.send(todo);
+};
+const saveHome = async (req, res) => {
+  const { text } = req.body;
+  homeModel.create({ text }).then((data) => {
+    console.log("Added successfully");
+    res.send(data);
+  });
+};
+const updateHome = async (req, res) => {
+  const { _id, text } = req.body;
+  homeModel
+    .findByIdAndUpdate(_id, { text })
+    .then(() => res.send("Updated successfully"))
+    .catch((err) => console.log(err));
+};
+const deleteHome = async (req, res) => {
+  const { _id } = req.body;
+  homeModel
+    .findByIdAndDelete(_id)
+    .then(() => res.send("Deleted successfully"))
+    .catch((err) => console.log(err));
+};
 /** Generate pdf */
 const exportUserPdf = async (req, res) => {
   try {
@@ -229,6 +276,10 @@ const exportUserPdf = async (req, res) => {
 /** Uploading images */
 
 module.exports = {
+  getHome,
+  deleteHome,
+  updateHome,
+  saveHome,
   getAllDoctorsController,
   getAllUsersController,
   changeAccountStatusController,

@@ -1,7 +1,7 @@
 import React from "react";
 import Layout from "../components/Layout";
 import { useState } from "react";
-import { Col, Form, Input, Row, DatePicker, message } from "antd";
+import { Col, Form, Input, Row, DatePicker, message, Select } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { hideLoading, showLoading } from "../redux/features/alertSlice";
@@ -67,8 +67,8 @@ const ApplyForm = () => {
             <Form.Item
               label="Documents"
               name="link"
-              // required
-              // rules={[{ required: true }]}
+              required
+              message="Please put a valid link else your form may get rejected"
             >
               <Input type="text" placeholder="put your documents link here" />
               <small>
@@ -96,7 +96,10 @@ const ApplyForm = () => {
               required
               rules={[{ required: true }]}
             >
-              <DatePicker />
+              <DatePicker
+                style={{ width: "100%" }}
+                placeholder="Choose Date of Birth"
+              />
             </Form.Item>
           </Col>
           <Col xs={24} md={24} lg={8}>
@@ -116,7 +119,11 @@ const ApplyForm = () => {
               required
               rules={[{ required: true }]}
             >
-              <Input type="text" placeholder="sex" />
+              <Select placeholder="Sex">
+                <Select.Option value="Male"></Select.Option>
+                <Select.Option value="Female"></Select.Option>
+                <Select.Option value="Other"></Select.Option>
+              </Select>
             </Form.Item>
           </Col>
           <Col xs={24} md={24} lg={8}>
@@ -161,7 +168,11 @@ const ApplyForm = () => {
               required
               rules={[{ required: true }]}
             >
-              <Input type="text" placeholder="your caste" />
+              <Select placeholder="Select you'r caste">
+                <Select.Option value="Open"></Select.Option>
+                <Select.Option value="SC"></Select.Option>
+                <Select.Option value="ST"></Select.Option>
+              </Select>
             </Form.Item>
           </Col>
 
@@ -264,7 +275,6 @@ const ApplyForm = () => {
           </Col>
 
           <Col xs={24} md={24} lg={8}></Col>
-
           <Col xs={24} md={24} lg={8}>
             <button className="btn btn-primary form-btn">Submit</button>
           </Col>
