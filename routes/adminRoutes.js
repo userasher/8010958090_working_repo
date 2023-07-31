@@ -13,6 +13,7 @@ const {
   saveHome,
   updateHome,
   deleteHome,
+  deleteUserbyId,
 } = require("../controllers/adminCtrl");
 const router = express.Router();
 // get method || users
@@ -31,6 +32,7 @@ router.post(
   changeAccountStatusController
 );
 router.post("/addRailwayno", authMiddleware, addtheRailwayNo);
+router.post("/deleteuser", authMiddleware, deleteUserbyId);
 // router.get("/homeget", getHome);
 // router.post("/updateHome", updateHome);
 // router.post("/deletehome", deleteHome);

@@ -32,6 +32,7 @@ import addRegisterationNo from "./addRegisterationNo";
 const Doctors = () => {
   const componentRef = useRef();
   const [regno, setRegno] = useState(null);
+  const [deleteno, setDeleteno] = useState(null);
   const [doctors, setDoctors] = useState([]);
   const [Users, setUsers] = useState([]);
   const [selectedBill, setSelectedBill] = useState(null);
@@ -39,17 +40,17 @@ const Doctors = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   // const [value, setValue] = (useState < string) | number | (null > "99");
 
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
+  // const showModal = () => {
+  //   setIsModalOpen(true);
+  // };
 
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
+  // const handleOk = () => {
+  //   setIsModalOpen(false);
+  // };
 
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
+  // const handleCancel = () => {
+  //   setIsModalOpen(false);
+  // };
   const getDoctors = async () => {
     try {
       const res = await axios.get("/api/v1/admin/getAllDoctors", {
@@ -131,6 +132,28 @@ const Doctors = () => {
       }
     } catch (error) {
       message.error("Something Went Wrong");
+    }
+  };
+  const deleteSelectedBill = async (record) => {
+    console.log(record._id);
+    try {
+      const res = await axios.post(
+        "/api/v1/admin/deleteuser",
+        {
+          doctorId: record._id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+      if (res.data.success) {
+        message.success(res.data.message);
+        window.location.reload();
+      }
+    } catch (error) {
+      message.error("something went wrong during deletion");
     }
   };
   useEffect(() => {
@@ -366,7 +389,22 @@ const Doctors = () => {
         </div>
       ),
     },
-
+    {
+      title: "Delete ",
+      dataIndex: "_id",
+      render: (id, record) => (
+        <div>
+          <Button
+            style={{ color: "red", cursor: "pointer" }}
+            onClick={() => {
+              deleteSelectedBill(record);
+            }}
+          >
+            Delete
+          </Button>
+        </div>
+      ),
+    },
     {
       title: "Print's",
       dataIndex: "_id",

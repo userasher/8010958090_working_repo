@@ -61,7 +61,24 @@ const getAllDoctorsController = async (req, res) => {
     });
   }
 };
-
+const deleteUserbyId = async (req, res) => {
+  try {
+    const { doctorId } = req.body;
+    const doctors = await railwayModel.findByIdAndDelete(doctorId);
+    res.status(200).send({
+      success: true,
+      message: "Railway user deleted successfully",
+      data: doctors,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "error while deleting the user data",
+      error,
+    });
+  }
+};
 const getAllDoctorsPrintController = async (req, res) => {
   try {
     const doctors = await railwayModel
@@ -279,6 +296,7 @@ const exportUserPdf = async (req, res) => {
 
 module.exports = {
   getHome,
+  deleteUserbyId,
   deleteHome,
   updateHome,
   saveHome,
