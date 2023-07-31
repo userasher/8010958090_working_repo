@@ -70,9 +70,9 @@ const NotificationPage = () => {
       <Tabs>
         <Tabs.TabPane tab="UnRead" key={0}>
           <div className="d-flex justify-content-end">
-            <h4 className="p-2" onClick={handleMarkAllRead}>
+            <button className="p-2 btn btn-success" onClick={handleMarkAllRead}>
               Mark All Read
-            </h4>
+            </button>
           </div>
           {user?.notifcation.map((notificationMgs) => (
             <div
@@ -86,13 +86,13 @@ const NotificationPage = () => {
         </Tabs.TabPane>
         <Tabs.TabPane tab="Read" key={1}>
           <div className="d-flex justify-content-end">
-            <h4
-              className="p-2 text-primary"
+            <button
+              className="p-2 btn btn-danger"
               style={{ cursor: "pointer" }}
               onClick={handleDeleteAllRead}
             >
               Delete All Read
-            </h4>
+            </button>
           </div>
           {user?.seennotification.map((notificationMgs) => (
             <div

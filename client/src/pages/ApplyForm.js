@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { hideLoading, showLoading } from "../redux/features/alertSlice";
 import axios from "axios";
+
 const ApplyForm = () => {
   const { user } = useSelector((state) => state.user);
   const { RangePicker } = DatePicker;
@@ -39,7 +40,7 @@ const ApplyForm = () => {
   };
   return (
     <Layout>
-      <h1 className="text-center">Apply here</h1>
+      <h1 className="text-center">Apply For Concession </h1>
       <Form layout="vertical" onFinish={handleFinish} className="m-3">
         <h4>Personal Details :</h4>
         <Row gutter={20}>
@@ -70,10 +71,12 @@ const ApplyForm = () => {
               required
               message="Please put a valid link else your form may get rejected"
             >
-              <Input type="text" placeholder="put your documents link here" />
-              <small>
-                Create a drive link and upload you'r college ID ,cast validity
-                (SC/ST), Aadhaar Card
+              <Input type="text" placeholder="your Documents link here" />
+              <small style={{ color: "blue" }}>
+                Create a drive link and upload college ID, Aadhaar Card,Caste
+                Certificate needed.(SC/ST) Students Caste Validity Certificate
+                needed. Let the link be public till your application is not
+                Approved.
               </small>
             </Form.Item>
           </Col>
@@ -136,10 +139,87 @@ const ApplyForm = () => {
               <Input type="text" placeholder="Your address" />
             </Form.Item>
           </Col>
+          <Col xs={24} md={24} lg={8}>
+            <Form.Item
+              label="Caste"
+              name="caste"
+              required
+              rules={[{ required: true }]}
+            >
+              <Select placeholder="Select you'r caste">
+                <Select.Option value="Open"></Select.Option>
+                <Select.Option value="SC"></Select.Option>
+                <Select.Option value="ST"></Select.Option>
+              </Select>
+            </Form.Item>
+          </Col>
         </Row>
         {/* railway details */}
-        <h4> Current Form Details </h4>
+        <h4 style={{ marginBottom: "10px" }}>
+          {" "}
+          Previous Form Details{" "}
+          <h6 style={{ color: "gray" }}>
+            (If Applying for First time no need for this section details){" "}
+          </h6>
+        </h4>
+
         <Row gutter={20}>
+          <Col xs={24} md={24} lg={8}>
+            <Form.Item
+              label="From "
+              name="previousfrom"
+              // required
+              // rules={[{ required: true }]}
+            >
+              {/* <RangePicker /> */}
+              <Input type="text" placeholder="previous from " />
+            </Form.Item>
+          </Col>
+          <Col xs={24} md={24} lg={8}>
+            <Form.Item
+              label="To "
+              name="previousto"
+              // required
+              // rules={[{ required: true }]}
+            >
+              {/* <RangePicker /> */}
+              <Input type="text" placeholder="previous to " />
+            </Form.Item>
+          </Col>
+
+          <Col xs={24} md={24} lg={8}>
+            <Form.Item
+              label="Class"
+              name="previousno"
+              // required
+              // rules={[{ required: true }]}
+            >
+              {/* <RangePicker /> */}
+              <Select placeholder="Class">
+                <Select.Option value="1st"></Select.Option>
+                <Select.Option value="2nd"></Select.Option>
+              </Select>
+              {/* <Input type="text" placeholder="previous no" /> */}
+            </Form.Item>
+          </Col>
+
+          <Col xs={24} md={24} lg={8}>
+            <Form.Item
+              label="Ticket No"
+              name="previousticket"
+              // required
+              rules={[{ max: 4 }]}
+            >
+              {/* <RangePicker /> */}
+              <Input type="text" placeholder="previous ticket no " />
+              <small style={{ color: "blue" }}>
+                Last Four digits of Previous Ticket No needed
+              </small>
+            </Form.Item>
+          </Col>
+        </Row>
+        <h4>New Applicants</h4>
+        <Row gutter={"20"}>
           <Col xs={24} md={24} lg={8}>
             <Form.Item
               label="From"
@@ -163,41 +243,6 @@ const ApplyForm = () => {
           </Col>
           <Col xs={24} md={24} lg={8}>
             <Form.Item
-              label="Caste"
-              name="caste"
-              required
-              rules={[{ required: true }]}
-            >
-              <Select placeholder="Select you'r caste">
-                <Select.Option value="Open"></Select.Option>
-                <Select.Option value="SC"></Select.Option>
-                <Select.Option value="ST"></Select.Option>
-              </Select>
-            </Form.Item>
-          </Col>
-
-          <Col xs={24} md={24} lg={8}>
-            <Form.Item
-              label="Season Ticket No"
-              name="seasonticketNo"
-              required
-              rules={[{ required: true }]}
-            >
-              <Input type="text" placeholder="Season Ticket no" />
-            </Form.Item>
-          </Col>
-          {/* <Col xs={24} md={24} lg={8}>
-            <Form.Item
-              label="Reason for applying "
-              name="reason"
-              required
-              rules={[{ required: true }]}
-            >
-              <Input type="text" placeholder="Internship purpose" />
-            </Form.Item>
-          </Col> */}
-          <Col xs={24} md={24} lg={8}>
-            <Form.Item
               label="Timings"
               name="timings"
               required
@@ -215,7 +260,12 @@ const ApplyForm = () => {
               rules={[{ required: true }]}
             >
               {/* <RangePicker /> */}
-              <Input type="text" placeholder="class" />
+              <Select placeholder="Class">
+                <Select.Option value="1st"></Select.Option>
+                <Select.Option value="2nd"></Select.Option>
+                {/* <Select.Option value="ST"></Select.Option> */}
+              </Select>
+              {/* <Input type="text" placeholder="class" /> */}
             </Form.Item>
           </Col>
           <Col xs={24} md={24} lg={8}>
@@ -226,57 +276,32 @@ const ApplyForm = () => {
               rules={[{ required: true }]}
             >
               {/* <RangePicker /> */}
-              <Input type="text" placeholder="period" />
+              <Select placeholder="Period">
+                <Select.Option value="Monthly"></Select.Option>
+                <Select.Option value="Quaterly"></Select.Option>
+                <Select.Option value="Half Yearly"></Select.Option>
+              </Select>
+              {/* <Input type="text" placeholder="period" /> */}
             </Form.Item>
           </Col>
-          <Col xs={24} md={24} lg={8}>
+          {/* <Col xs={24} md={24} lg={8}>
             <Form.Item
-              label="previous class no"
-              name="previousno"
-              required
-              rules={[{ required: true }]}
+              label="Season Ticket No"
+              name="seasonticketNo"
+              // required
+              // rules={[{ required: true }]}
             >
-              {/* <RangePicker /> */}
-              <Input type="text" placeholder="previous no" />
+              <Input type="text" placeholder="Season Ticket no" />
             </Form.Item>
-          </Col>
-          <Col xs={24} md={24} lg={8}>
-            <Form.Item
-              label="previous from "
-              name="previousfrom"
-              required
-              rules={[{ required: true }]}
-            >
-              {/* <RangePicker /> */}
-              <Input type="text" placeholder="previous from " />
-            </Form.Item>
-          </Col>
-          <Col xs={24} md={24} lg={8}>
-            <Form.Item
-              label="previous to "
-              name="previousto"
-              required
-              rules={[{ required: true }]}
-            >
-              {/* <RangePicker /> */}
-              <Input type="text" placeholder="previous to " />
-            </Form.Item>
-          </Col>
-          <Col xs={24} md={24} lg={8}>
-            <Form.Item
-              label="previous ticket no "
-              name="previousticket"
-              required
-              rules={[{ required: true }]}
-            >
-              {/* <RangePicker /> */}
-              <Input type="text" placeholder="previous ticket no " />
-            </Form.Item>
-          </Col>
-
+          </Col> */}
           <Col xs={24} md={24} lg={8}></Col>
           <Col xs={24} md={24} lg={8}>
-            <button className="btn btn-primary form-btn">Submit</button>
+            <button
+              className="btn btn-success form-btn"
+              style={{ background: "green" }}
+            >
+              Submit
+            </button>
           </Col>
         </Row>
       </Form>

@@ -5,7 +5,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import { Col, Table, Tag } from "antd";
 import moment from "moment";
-// import "./admin/InvoiceStyles.css";
+import "./admin/InvoiceStyles.css";
+// import { black } from "colors";
 
 const GeneratePdf = () => {
   const [users, setUsers] = useState([]);
@@ -140,6 +141,9 @@ const GeneratePdf = () => {
           <Table
             columns={columns}
             dataSource={users}
+            bordered
+            // solid
+            // className="custom-table"
             // style={{ border: "1px solid black" }} // Add inline border style to the Table
           />
           <button onClick={handlePrint}>Print this out</button>

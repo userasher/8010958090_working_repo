@@ -143,6 +143,8 @@ const Doctors = () => {
     {
       title: "Name",
       dataIndex: "name",
+      width: 100,
+      fixed: "left",
       render: (text, record) => (
         <span>
           {record.firstName} {record.lastName}
@@ -176,8 +178,9 @@ const Doctors = () => {
       dataIndex: "sex",
     },
     {
-      title: "address",
+      title: "Address",
       dataIndex: "address",
+      // width: 80,
     },
     {
       title: "from",
@@ -367,6 +370,8 @@ const Doctors = () => {
     {
       title: "Print's",
       dataIndex: "_id",
+      width: 10,
+      fixed: "right",
       render: (id, record) => (
         <div>
           <EyeOutlined
@@ -386,6 +391,7 @@ const Doctors = () => {
       <div className="d-flex justify-content-between"></div>
       <h1 className="text-center m-3">All Applicants</h1>
       <Table columns={columns} dataSource={doctors} bordered />
+      {/* size="middle" */}
       {popupModal && (
         <Modal
           width={1100}

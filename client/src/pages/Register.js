@@ -94,7 +94,12 @@ const Register = () => {
                   <Form.Item
                     label="Password"
                     name="password"
-                    rules={[{ required: true }]}
+                    rules={[
+                      { required: true },
+                      {
+                        min: 6,
+                      },
+                    ]}
                     hasFeedback
                   >
                     <Input.Password name="up" type="password" required />

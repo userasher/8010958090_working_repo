@@ -6,6 +6,8 @@ import { showLoading, hideLoading } from "../redux/features/alertSlice";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./LoginStyle.css";
+import loacalTrain from "../localtrain.jpg";
+import vjtiimg from "../vjti logo.png";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -61,11 +63,12 @@ const Login = () => {
     //   </Form>
     // </div>
 
-    <div class="container offset">
+    <div class="container offset ">
       <div class="row m-5 no-gutters shadow-lg">
         <div class="col-md-6 d-none d-md-block">
           <img
-            src="https://w0.peakpx.com/wallpaper/49/544/HD-wallpaper-local-train-mumbai-aamchi-cst-localtrain-mumbaitrain-station-track-trains-whistle.jpg"
+            // src="https://w0.peakpx.com/wallpaper/49/544/HD-wallpaper-local-train-mumbai-aamchi-cst-localtrain-mumbaitrain-station-track-trains-whistle.jpg"
+            src={loacalTrain}
             class="img-fluid"
             style={{ "min-height": "100%" }}
           />
@@ -80,7 +83,7 @@ const Login = () => {
                 " height": "100px",
                 width: "70px",
               }}
-              src="https://seeklogo.com/images/V/vjti-college-logo-707F46CDA8-seeklogo.com.png"
+              src={vjtiimg}
               alt=" VJTI logo"
             />
           </div>
@@ -130,7 +133,10 @@ const Login = () => {
                     required
                     label="Password"
                     name="password"
-                    rules={[{ required: true }]}
+                    rules={[
+                      { required: true },
+                      // { min: 6 }
+                    ]}
                     hasFeedback
                   />
                 </Form.Item>
