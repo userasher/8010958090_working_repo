@@ -130,11 +130,11 @@ const Login = () => {
                   <Input.Password
                     class="form-control"
                     type="password"
-                    required
                     label="Password"
                     name="password"
+                    required
                     rules={[
-                      { required: true },
+                      { required: true, message: "Please enter a Password" },
                       // { min: 6 }
                     ]}
                     hasFeedback

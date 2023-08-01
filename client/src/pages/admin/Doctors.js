@@ -238,20 +238,20 @@ const Doctors = () => {
       title: "Season Ticket No",
       dataIndex: "seasonticketNo",
     },
-    {
-      title: "Date from and to ",
-      dataIndex: "timings",
-      render: (record) => {
-        return (
-          <div>
-            <p>
-              {moment(record[0]).format("DD-MM-YYYY")} to{" "}
-              {moment(record[1]).format("DD-MM-YYYY")}
-            </p>
-          </div>
-        );
-      },
-    },
+    // {
+    //   title: "Date from and to ",
+    //   dataIndex: "timings",
+    //   render: (record) => {
+    //     return (
+    //       <div>
+    //         <p>
+    //           {moment(record[0]).format("DD-MM-YYYY")} to{" "}
+    //           {moment(record[1]).format("DD-MM-YYYY")}
+    //         </p>
+    //       </div>
+    //     );
+    //   },
+    // },
     {
       title: "Documents",
       dataIndex: "links",
@@ -270,6 +270,14 @@ const Doctors = () => {
       title: "phone",
       dataIndex: "phone",
     },
+    {
+      title: "Date Ending",
+      dataIndex: "timingsends",
+      render: (timingsends) => {
+        return <div>{moment(timingsends).format("DD-MM-YYYY")}</div>;
+      },
+    },
+
     {
       title: "Date Applied",
       dataIndex: "createdAt",
@@ -497,6 +505,7 @@ const Doctors = () => {
           cursor: "pointer",
           borderRadius: "4px",
           width: "40%",
+          // backgroundColor: "black",
         }}
         onSearch={(value) => {
           setSearchedText(value);

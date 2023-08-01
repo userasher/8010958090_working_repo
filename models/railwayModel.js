@@ -69,9 +69,9 @@ const railwaySchema = new mongoose.Schema(
       type: String,
       default: "pending",
     },
-    timings: {
-      type: Object,
-      required: [true, "work timing is required"],
+    timingsends: {
+      type: String,
+      // required: [true, "work timing is required"],
     },
     link: {
       type: String,

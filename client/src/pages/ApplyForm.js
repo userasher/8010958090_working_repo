@@ -202,7 +202,16 @@ const ApplyForm = () => {
               {/* <Input type="text" placeholder="previous no" /> */}
             </Form.Item>
           </Col>
-
+          <Col xs={24} md={24} lg={8}>
+            <Form.Item
+              label="End Date of your pass"
+              name="timingsends"
+              // required
+              // rules={[{ required: true }]}
+            >
+              <DatePicker />
+            </Form.Item>
+          </Col>
           <Col xs={24} md={24} lg={8}>
             <Form.Item
               label="Ticket No"
@@ -239,16 +248,6 @@ const ApplyForm = () => {
               rules={[{ required: true }]}
             >
               <Input type="text" placeholder="To" />
-            </Form.Item>
-          </Col>
-          <Col xs={24} md={24} lg={8}>
-            <Form.Item
-              label="Timings"
-              name="timings"
-              required
-              rules={[{ required: true }]}
-            >
-              <RangePicker />
             </Form.Item>
           </Col>
 
