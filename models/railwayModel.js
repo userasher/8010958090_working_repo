@@ -51,7 +51,7 @@ const railwaySchema = new mongoose.Schema(
     },
     seasonticketNo: {
       type: String,
-      required: [true, "Season ticket no is required"],
+      // required: [true, "Season ticket no is required"],
     },
     railwayTicketNo: {
       type: String,
@@ -96,7 +96,12 @@ const railwaySchema = new mongoose.Schema(
     previousticket: {
       type: String,
     },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    },
   },
+
   { timestamps: true }
 );
 const railwayModel = mongoose.model("railways", railwaySchema);

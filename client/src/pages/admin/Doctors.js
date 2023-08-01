@@ -250,6 +250,20 @@ const Doctors = () => {
       dataIndex: "phone",
     },
     {
+      title: "Date Applied",
+      dataIndex: "createdAt",
+      render: (record) => {
+        return (
+          <div>
+            <p>
+              {moment().format("DD-MM-YYYY")}
+              {/* {moment(record[1]).format("DD-MM-YYYY")} */}
+            </p>
+          </div>
+        );
+      },
+    },
+    {
       title: "reg",
       dataIndex: "actions",
       render: (id, record) => (
@@ -341,7 +355,7 @@ const Doctors = () => {
     //   ),
     // },
     {
-      title: "Railway ticket no",
+      title: "Voucher No",
       dataIndex: "railwayTicketNo",
     },
 
@@ -428,6 +442,7 @@ const Doctors = () => {
     <Layout>
       <div className="d-flex justify-content-between"></div>
       <h1 className="text-center m-3">All Applicants</h1>
+      <Input.Search placeholder="Search here..."></Input.Search>
       <Table columns={columns} dataSource={doctors} bordered />
       {/* size="middle" */}
       {popupModal && (
