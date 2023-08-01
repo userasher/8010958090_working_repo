@@ -14,6 +14,7 @@ const {
   updateHome,
   deleteHome,
   deleteUserbyId,
+  checkVerificationStatus,
 } = require("../controllers/adminCtrl");
 const router = express.Router();
 // get method || users
@@ -26,6 +27,7 @@ router.get("/getALLpdf", authMiddleware, getAllDoctorsPrintController);
 // generating pdf
 router.get("/exportUsersPdf", authMiddleware, exportUserPdf);
 
+router.post("/getVerificationStatus", authMiddleware, checkVerificationStatus);
 router.post(
   "/changeAccountStatus",
   authMiddleware,
@@ -37,11 +39,7 @@ router.post("/deleteuser", authMiddleware, deleteUserbyId);
 // router.post("/updateHome", updateHome);
 // router.post("/deletehome", deleteHome);
 // router.post("/homesave", saveHome);
-router.post(
-  "/changeAccountStatustoVerify",
-  authMiddleware,
-  changeVerificationStatusController
-);
+router.post("/changeAccountStatustoVerify", changeVerificationStatusController);
 router.post("/addNo", authMiddleware, addTicketNO);
 
 module.exports = router;

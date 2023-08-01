@@ -212,6 +212,55 @@ const changeVerificationStatusController = async (req, res) => {
     });
   }
 };
+// const checkVerificationStatus = async (req, res) => {
+//   try {
+//     const { doctorId } = req.body;
+//     const doctors = await railwayModel.findById(doctorId);
+//     const user = await userModel.findOne({ _id: doctors.userId });
+
+//     res.status(200).send({
+//       success: true,
+//       message: "Account status fetched ",
+//       data: user.isVerified === true,
+//     });
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).send({
+//       success: false,
+//       message: "error while getting verification status",
+//       error,
+//     });
+//   }
+// };
+const checkVerificationStatus = async (req, res) => {
+  try {
+    const { doctorId, userId } = req.body;
+    const doctors = await railwayModel.findById(doctorId);
+    const user = await userModel.findOne({ _id: doctors.userId });
+
+    if (user.isVerified === true) {
+      res.status(200).send({
+        success: true,
+        message: "Account status fetched. Account is verified.",
+        data: true,
+      });
+    } else {
+      res.status(200).send({
+        success: true,
+        message: "Account status fetched. Account is not verified .",
+        data: false,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while getting verification status",
+      error,
+    });
+  }
+};
+
 const addtheRailwayNo = async (req, res) => {
   try {
     const { doctorId, railwayTicket } = req.body;
@@ -295,6 +344,7 @@ const exportUserPdf = async (req, res) => {
 /** Uploading images */
 
 module.exports = {
+  checkVerificationStatus,
   getHome,
   deleteUserbyId,
   deleteHome,

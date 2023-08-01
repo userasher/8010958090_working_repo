@@ -134,6 +134,59 @@ const Doctors = () => {
       message.error("Something Went Wrong");
     }
   };
+  // const VerifyStatusofUser = async (record) => {
+  //   try {
+  //     const res = await axios.post(
+  //       "/api/v1/admin/getVerificationStatus",
+  //       {
+  //         doctorId: record._id,
+  //         userId: record.userId,
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: `Bearer ${localStorage.getItem("token")}`,
+  //         },
+  //       }
+  //     );
+  //     if (res.data.success) {
+  //       message.success(res.data.message);
+  //       window.location.reload();
+  //     }
+  //   } catch (error) {
+  //     message.error("Something Went Wrong");
+  //   }
+  // };
+
+  const VerifyStatusofUser = async (record) => {
+    console.log(record._id, record.userId);
+
+    try {
+      const res = await axios.post(
+        "/api/v1/admin/getVerificationStatus",
+        {
+          doctorId: record._id,
+          userId: record.userId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+
+      if (res.data.success) {
+        message.success(res.data.message);
+        // window.location.reload();
+      } else {
+        // In case of an unsuccessful response (success=false), handle the error message accordingly.
+        // You can display the error message from the API response or provide a custom error message.
+        message.error(res.data.message || "Verification status fetch failed.");
+      }
+    } catch (error) {
+      message.error("Something Went Wrong");
+    }
+  };
+
   const deleteSelectedBill = async (record) => {
     console.log(record._id);
     try {
@@ -261,6 +314,44 @@ const Doctors = () => {
         </div>
       ),
     },
+    // {
+    //   title: "Verify Documents",
+    //   dataIndex: "actions",
+    //   render: (record) => (
+    //     <Form>
+    //       <button
+    //         className="btn btn-success"
+    //         style={{
+    //           fontSize: "12px",
+    //           padding: "6px 12px",
+    //           borderRadius: "4px",
+    //           backgroundColor: "green",
+    //           color: "white",
+    //           border: "none",
+    //           cursor: "pointer",
+    //         }}
+    //         onClick={() => handleAccountStatustoVerify(record, "approved")}
+    //       >
+    //         Verify
+    //       </button>
+    //     </Form>
+    //   ),
+    //   // <Form>
+    //   //   <input
+    //   //     type="text"
+    //   //     value={regno}
+    //   //     onChange={(e) => {
+    //   //       setRegno(e.target.value);
+    //   //     }}
+    //   //   ></input>
+    //   //   <button onClick={() => addRegNo(record, regno)}>Submit</button>
+    //   // </Form>
+    // },
+    {
+      title: "Document Verification Status",
+      dataIndex: "actions",
+      // render: (record) => {},
+    },
 
     // {
     //   title: "Status",
@@ -365,24 +456,34 @@ const Doctors = () => {
       //   <button onClick={() => addRegNo(record, regno)}>Submit</button>
       // </Form>
     },
-    // {
-    //   title: "Actions",
-    //   dataIndex: "actions",
-    //   render: (text, record) => (
-    //     <div className="d-flex">
-    //       {Users === false ? (
-    //         <button
-    //           className="btn btn-success"
-    //           onClick={() => handleAccountStatustoVerify(record, "approved")}
-    //         >
-    //           Verify
-    //         </button>
-    //       ) : (
-    //         <button className="btn btn-danger">Verified</button>
-    //       )}
-    //     </div>
-    //   ),
-    // },
+    {
+      title: "Actions",
+      dataIndex: "actions",
+      render: (text, record) => (
+        <div className="d-flex">
+          <button
+            className="btn btn-success"
+            onClick={() => handleAccountStatustoVerify(record, "approved")}
+          >
+            Verify
+          </button>
+        </div>
+      ),
+    },
+    {
+      title: "Actions verify",
+      dataIndex: "_id",
+      render: (id, record) => (
+        <div className="d-flex">
+          <button
+            className="btn btn-primary"
+            onClick={() => VerifyStatusofUser(record)}
+          >
+            Verify Status
+          </button>
+        </div>
+      ),
+    },
     {
       title: "Voucher No",
       dataIndex: "railwayTicketNo",
