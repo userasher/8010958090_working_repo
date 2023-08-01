@@ -37,7 +37,7 @@ const Doctors = () => {
   const [Users, setUsers] = useState([]);
   const [selectedBill, setSelectedBill] = useState(null);
   const [popupModal, setPopupModal] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [searchedText, setSearchedText] = useState("");
   // const [value, setValue] = (useState < string) | number | (null > "99");
 
   // const showModal = () => {
@@ -168,6 +168,19 @@ const Doctors = () => {
       dataIndex: "name",
       width: 100,
       fixed: "left",
+      filteredValue: [searchedText],
+      onFilter: (value, record) => {
+        return (
+          String(record.firstName)
+            .toLowerCase()
+            .includes(value.toLowerCase()) ||
+          String(record.lastName).toLowerCase().includes(value.toLowerCase()) ||
+          String(record.railwayTicketNo)
+            .toLowerCase()
+            .includes(value.toLowerCase())
+        );
+      },
+
       render: (text, record) => (
         <span>
           {record.firstName} {record.lastName}
@@ -195,6 +208,14 @@ const Doctors = () => {
     {
       title: "Age",
       dataIndex: "age",
+      render: (age) => {
+        const ageNumber = parseInt(age, 10); // Parse the age value as an integer
+        const isAgeGreaterThan25 = ageNumber > 25;
+
+        const style = isAgeGreaterThan25 ? { color: "red" } : {}; // Apply red color style if age > 25
+
+        return <div style={style}>{age}</div>;
+      },
     },
     {
       title: "sex",
@@ -403,22 +424,49 @@ const Doctors = () => {
         </div>
       ),
     },
+    // {
+    //   title: "Delete ",
+    //   dataIndex: "_id",
+    //   render: (id, record) => (
+    //     <div>
+    //       <Button
+    //         style={{ color: "red", cursor: "pointer" }}
+    //         onClick={() => {
+    //           deleteSelectedBill(record);
+    //         }}
+    //       >
+    //         Delete
+    //       </Button>
+    //     </div>
+    //   ),
+    // },
     {
-      title: "Delete ",
+      title: "Delete",
       dataIndex: "_id",
-      render: (id, record) => (
-        <div>
-          <Button
-            style={{ color: "red", cursor: "pointer" }}
-            onClick={() => {
-              deleteSelectedBill(record);
-            }}
-          >
-            Delete
-          </Button>
-        </div>
-      ),
+      render: (id, record) => {
+        const createdAtDate = moment(record.createdAt); // Convert the createdAt date to a moment object
+        const currentDate = moment(); // Get the current date as a moment object
+        const isOlderThan4Years = createdAtDate.isBefore(
+          currentDate.subtract(4, "years")
+        );
+
+        return (
+          <div>
+            {isOlderThan4Years && (
+              <Button
+                style={{ color: "red", cursor: "pointer" }}
+                onClick={() => {
+                  deleteSelectedBill(record);
+                }}
+              >
+                Delete
+              </Button>
+            )}
+          </div>
+        );
+      },
     },
+
     {
       title: "Print's",
       dataIndex: "_id",
@@ -442,7 +490,21 @@ const Doctors = () => {
     <Layout>
       <div className="d-flex justify-content-between"></div>
       <h1 className="text-center m-3">All Applicants</h1>
-      <Input.Search placeholder="Search here..."></Input.Search>
+      <Input.Search
+        placeholder="Search Name or Voucher No here..."
+        style={{
+          marginBottom: 8,
+          cursor: "pointer",
+          borderRadius: "4px",
+          width: "40%",
+        }}
+        onSearch={(value) => {
+          setSearchedText(value);
+        }}
+        onChange={(e) => {
+          setSearchedText(e.target.value);
+        }}
+      ></Input.Search>
       <Table columns={columns} dataSource={doctors} bordered />
       {/* size="middle" */}
       {popupModal && (
