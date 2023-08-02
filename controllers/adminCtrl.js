@@ -79,11 +79,88 @@ const deleteUserbyId = async (req, res) => {
     });
   }
 };
+const getAllDoctorsPrintBYnoController = async (req, res) => {
+  // console.log(minValue, maxValue);
+  try {
+    const { minValue, maxValue } = req.body;
+    console.log(minValue, maxValue);
+    const doctors = await railwayModel
+      .find({
+        $and: [
+          { status: "approved" },
+          {
+            $expr: {
+              $and: [
+                { $gte: [{ $toDouble: "$railwayTicketNo" }, minValue] }, // Convert "$value" to double and compare
+                { $lte: [{ $toDouble: "$railwayTicketNo" }, maxValue] }, // Convert "$value" to double and compare
+              ],
+            },
+          },
+        ],
+      })
+      // .sort({ "railwayModel.regno": 1 });
+      .sort({ createdAt: -1 });
+    console.log(doctors);
+    res.status(200).send({
+      success: true,
+      message: "Doctors Data list",
+      data: doctors,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "error while getting doctors data",
+      error,
+    });
+  }
+};
+
+// const getAllDoctorsPrintController = async (req, res) => {
+//   try {
+//     // const { minValue, maxValue } = req.body;
+//     // console.log(minValue, maxValue);
+//     const doctors = await railwayModel
+//       .find({ status: "approved" })
+//       // .sort({ "railwayModel.regno": 1 });
+//       .sort({ createdAt: -1 });
+//     res.status(200).send({
+//       success: true,
+//       message: "Doctors Data list",
+//       data: doctors,
+//     });
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).send({
+//       success: false,
+//       message: "error while getting doctors data",
+//       error,
+//     });
+//   }
+// };
 const getAllDoctorsPrintController = async (req, res) => {
   try {
+    const { minValue, maxValue } = req.body;
+    console.log(minValue, maxValue);
     const doctors = await railwayModel
-      .find({ status: "approved" })
+      .find({
+        $and: [
+          { status: "approved" },
+          {
+            $expr: {
+              $and: [
+                { $gte: [{ $toDouble: "$railwayTicketNo" }, minValue] }, // Convert "$value" to double and compare
+                { $lte: [{ $toDouble: "$railwayTicketNo" }, maxValue] }, // Convert "$value" to double and compare
+              ],
+            },
+          },
+        ],
+      })
+      // .sort({ "railwayModel.regno": 1 });
+
       .sort({ createdAt: -1 });
+
+    console.log(doctors);
     res.status(200).send({
       success: true,
       message: "Doctors Data list",
@@ -267,7 +344,7 @@ const addtheRailwayNo = async (req, res) => {
     const doctors = await railwayModel.findByIdAndUpdate(doctorId, {
       railwayTicket,
     });
-
+    await railwayModel.save();
     res.status(200).send({
       success: true,
       message: "registration no added",
@@ -344,6 +421,7 @@ const exportUserPdf = async (req, res) => {
 /** Uploading images */
 
 module.exports = {
+  getAllDoctorsPrintBYnoController,
   checkVerificationStatus,
   getHome,
   deleteUserbyId,

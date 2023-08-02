@@ -54,7 +54,7 @@ const railwaySchema = new mongoose.Schema(
       // required: [true, "Season ticket no is required"],
     },
     railwayTicketNo: {
-      type: String,
+      type: Number,
       default: "null",
     },
     // reason: {

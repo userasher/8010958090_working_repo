@@ -15,13 +15,19 @@ const {
   deleteHome,
   deleteUserbyId,
   checkVerificationStatus,
+  getAllDoctorsPrintBYnoController,
 } = require("../controllers/adminCtrl");
 const router = express.Router();
 // get method || users
 router.get("/getAllUsers", authMiddleware, getAllUsersController);
 // get method || doctors
 router.get("/getALLDoctors", authMiddleware, getAllDoctorsController);
-router.get("/getALLpdf", authMiddleware, getAllDoctorsPrintController);
+router.post("/getALLpdf", authMiddleware, getAllDoctorsPrintBYnoController);
+router.post(
+  "/getALLpdfbyRegNo",
+  authMiddleware,
+  getAllDoctorsPrintBYnoController
+);
 
 // POST Method || status changing
 // generating pdf

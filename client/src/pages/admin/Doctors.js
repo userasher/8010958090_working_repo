@@ -8,7 +8,7 @@ import React, {
 import Layout from "./../../components/Layout";
 import { useReactToPrint } from "react-to-print";
 import axios from "axios";
-import { EyeOutlined } from "@ant-design/icons";
+import { EyeOutlined, SearchOutlined } from "@ant-design/icons";
 import {
   Button,
   Input,
@@ -27,7 +27,7 @@ import moment from "moment";
 // import RailwayForm from "./RailwayForm";
 // import UserContext from "./useContext";
 import "./InvoiceStyles.css";
-import addRegisterationNo from "./addRegisterationNo";
+// import addRegisterationNo from "./addRegisterationNo";
 
 const Doctors = () => {
   const componentRef = useRef();
@@ -38,6 +38,7 @@ const Doctors = () => {
   const [selectedBill, setSelectedBill] = useState(null);
   const [popupModal, setPopupModal] = useState(false);
   const [searchedText, setSearchedText] = useState("");
+
   // const [value, setValue] = (useState < string) | number | (null > "99");
 
   // const showModal = () => {
@@ -134,6 +135,20 @@ const Doctors = () => {
       message.error("Something Went Wrong");
     }
   };
+
+  const handleSearch = () => {
+    // Your custom logic to filter data based on the range (from searchFrom to searchTo)
+    const filteredData = columns.filter((record) => {
+      const ticketNo = record.railwayTicketNo;
+      return (
+        ticketNo >= parseFloat(record.railwayTicketNo) &&
+        ticketNo <= parseFloat(record.railwayTicketNo)
+      );
+    });
+    // Handle the filtered data as needed
+    console.log(filteredData);
+  };
+
   // const VerifyStatusofUser = async (record) => {
   //   try {
   //     const res = await axios.post(
@@ -484,11 +499,14 @@ const Doctors = () => {
         </div>
       ),
     },
+    // {
+    //   title: "Voucher No",
+    //   dataIndex: "railwayTicketNo",
+    // },
     {
       title: "Voucher No",
       dataIndex: "railwayTicketNo",
     },
-
     {
       title: "Actions",
       dataIndex: "actions",
@@ -615,6 +633,7 @@ const Doctors = () => {
           setSearchedText(e.target.value);
         }}
       ></Input.Search>
+
       <Table columns={columns} dataSource={doctors} bordered />
       {/* size="middle" */}
       {popupModal && (
