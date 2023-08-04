@@ -55,7 +55,7 @@ const railwaySchema = new mongoose.Schema(
     },
     railwayTicketNo: {
       type: Number,
-      default: "null",
+      default: 0,
     },
     // reason: {
     //   type: String,

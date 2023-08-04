@@ -118,7 +118,7 @@ const authApplyController = async (req, res) => {
     await userModel.findByIdAndUpdate(adminUser._id, { notifcation });
     res.status(201).send({
       success: true,
-      message: "Form applied sucessfully",
+      message: "Applied Successfully",
     });
   } catch (error) {
     console.log(error);

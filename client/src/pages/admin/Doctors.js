@@ -471,17 +471,37 @@ const Doctors = () => {
       //   <button onClick={() => addRegNo(record, regno)}>Submit</button>
       // </Form>
     },
+    // {
+    //   title: "Actions",
+    //   dataIndex: "actions",
+    //   render: (text, record) => (
+    //     <div className="d-flex">
+    //       <button
+    //         className="btn btn-success"
+    //         onClick={() => handleAccountStatustoVerify(record, "approved")}
+    //       >
+    //         Verify
+    //       </button>
+    //     </div>
+    //   ),
+    // },
     {
       title: "Actions",
       dataIndex: "actions",
       render: (text, record) => (
         <div className="d-flex">
-          <button
-            className="btn btn-success"
-            onClick={() => handleAccountStatustoVerify(record, "approved")}
-          >
-            Verify
-          </button>
+          {record.verificationstatus === "pending" ? (
+            <button
+              className="btn btn-success"
+              onClick={() => handleAccountStatustoVerify(record, "approved")}
+            >
+              Verify
+            </button>
+          ) : (
+            <button className="btn btn-secondary" disabled>
+              Verified
+            </button>
+          )}
         </div>
       ),
     },
@@ -648,8 +668,8 @@ const Doctors = () => {
           footer={false}
         >
           {/* ============ invoice modal start ==============  */}
-          <div ref={componentRef}>
-            <div
+          <div ref={componentRef} style={{ marginRight: "0px" }}>
+            {/* <div
               style={{
                 "margin-left": "400px",
                 "margin-top": "0px",
@@ -705,10 +725,96 @@ const Doctors = () => {
                   {selectedBill.previousto}
                 </span>
               </div>
+            </div> */}
+
+            {/* <div
+              style={{
+                display: "flex",
+                float: "right",
+                marginRight: "0px",
+                marginLeft: "250px",
+                border: "2px solid blue",
+              }}
+            >
+              <div>
+                <div className="favour">abc</div>
+                <div className="left">
+                  <span className="lclass">1st </span>
+                  <span className="lperiod">monthly</span>
+                  <span>WADALA</span>
+                  <span className="leftTo">MATUNGA</span>
+                </div>
+                <div className="lprev">7890</div>
+                <div className="ldate">end Date</div>
+                <div />
+              </div>
+              <div
+                style={{
+                  float: "right",
+                  marginRight: 95,
+                  // border: "2px solid red",
+                }}
+              >
+                <p className="name mt-204"> ashwath Dange</p>
+                <div>
+                  <p className="age">
+                    20 <span className="date">8/10/22</span>
+                  </p>
+                </div>
+                <div className="chart">
+                  <span className="currClass">1</span>{" "}
+                  <span className="currPeriod">Monthly</span>{" "}
+                  <span className="currFrom">Wadala</span>{" "}
+                  <span className="currTo">thane</span>
+                </div>
+                <div className="prev1">
+                  {" "}
+                  <span className="prevClass">1</span>{" "}
+                  <span className="prevTicket">8458523</span>
+                </div>
+                <div className="prev2">
+                  <span className="prevFrom">Wadala</span>{" "}
+                  <span className="prevTo">Matunga</span>
+                </div>
+              </div>
+            </div> */}
+
+            <div style={{ textAlign: "right" }}>
+              <div className="name">Yadnesh Mahajan</div>
+              <div className="abc">abc</div>
+              <div className="birth">
+                <span className="age">20</span>
+                <span className="birthdate">8/10/2002</span>
+              </div>
+              <div className="box">
+                <span className="lclass">1st</span>
+                <span className="lperiod">monthly</span>
+                <span className="lfrom">wadala</span>
+                <span className="lto">Panvel</span>
+                <span className="rclass">1st</span>
+                <span className="rperiod">monthly</span>
+                <span className="rfrom">wadala</span>
+                <span className="rto">Panvel</span>
+              </div>
+              <div style={{ marginTop: "30px" }}>
+                <span className="prvclass">1st</span>
+                <span className="prvticketno">1234</span>
+              </div>
+              <div >
+                <span className="prevfrom">alibag</span>
+                <span className="prevto">nashik</span>
+              </div>
+              <div className="enddate">10/07/2023</div>
+              <div className="lprevticketno">5678</div>
+              <div className="lprevenddate">10/07/2023</div>
             </div>
-          </div>
-          <div className="d-flex justify-content-end mt-3">
-            <Button type="primary" onClick={handlePrint}>
+
+            <Button
+              className="d-flex justify-content-end mt-3"
+              type="primary"
+              style={{ color: "blue" }}
+              onClick={handlePrint}
+            >
               Print
             </Button>
           </div>
