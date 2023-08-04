@@ -63,7 +63,7 @@ const Login = () => {
     //   </Form>
     // </div>
 
-    <div class="container offset ">
+    <div class="container offset  ">
       <div class="row m-5 no-gutters shadow-lg">
         <div class="col-md-6 d-none d-md-block">
           <img
@@ -86,8 +86,11 @@ const Login = () => {
               src={vjtiimg}
               alt=" VJTI logo"
             />
+            <h4 className="text-center mt-2 font-serif underline">
+              Welcome to Vjti Railway Pass Concession
+            </h4>
           </div>
-          <h3 class="pb-3">Login Form</h3>
+          <h4 className="pb-3 text-bold mt-3">Login Here </h4>
           <div class="form-style">
             <Form
               layout="vertical"
@@ -114,7 +117,12 @@ const Login = () => {
                   ]}
                   hasFeedback
                 >
-                  <Input class="form-control" type="email" required />
+                  <Input
+                    class="form-control"
+                    type="email"
+                    required
+                    placeholder="userb20@vjti.ac.in"
+                  />
                 </Form.Item>
               </div>
               <div class="form-group pb-3">
@@ -132,6 +140,7 @@ const Login = () => {
                     type="password"
                     label="Password"
                     name="password"
+                    placeholder="••••••••"
                     required
                     rules={[
                       { required: true, message: "Please enter a Password" },
@@ -142,29 +151,31 @@ const Login = () => {
                 </Form.Item>
               </div>
               <div class="d-flex align-items-center justify-content-between">
-                <div>
-                  <Link
-                    style={{ color: "black", fontWeight: "bold" }}
-                    to="/password-reset"
-                    className="m-2"
-                  >
-                    Forgot Password
-                  </Link>
-                </div>
+                <Link
+                  style={{ fontWeight: "bold" }}
+                  to="/password-reset"
+                  className="no-underline text-black"
+                >
+                  Forgot Password ?
+                </Link>
               </div>
-              <div class="pb-2">
+              <div class="pb-2 mt-4">
                 <button
                   type="submit"
-                  class="btn btn-dark w-100 font-weight-bold mt-2"
+                  // style={{ backgroundC7olor: "blue" }}
+                  className=" bg-blue-500  hover:bg-blue-700 text-gray-800 font-bold py-2 px-4 rounded w-100 font-weight-bold"
                 >
-                  Submit
+                  Login
                 </button>
               </div>
             </Form>
 
-            <div class="pt-4 text-center">
-              <Link to="/register" className="m-2">
-                Not a user Register here
+            <div class="pt-4 text-right mt-2 ">
+              <Link
+                to="/register"
+                className="bg-blue-500 border-black hover:bg-blue-700 text-white font-bold py-2 px-4 rounded no-underline "
+              >
+                Register
               </Link>
             </div>
           </div>

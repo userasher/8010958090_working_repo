@@ -52,24 +52,25 @@ const Register = () => {
                     "margin-right": "auto",
                     " height": "100px",
                     width: "70px",
-                    "margin-bottom": "30px",
+                    "margin-bottom": "20px",
                   }}
                   src="https://seeklogo.com/images/V/vjti-college-logo-707F46CDA8-seeklogo.com.png"
                   alt=" VJTI logo"
                 />
               </div>
 
-              <div class="form-style">
+              <div class="form-style ">
                 <Form
                   method="post"
                   layout="vertical"
                   onFinish={onfinishHandler}
-                  className="register-form w-100"
+                  className="w-100"
                   oninput='up2.setCustomValidity(up2.value != up.value ? "Passwords do not match." : "")'
                 >
-                  <h3 className="text-center">Register Form</h3>
+                  <h3 className="text-center ">Create your Account </h3>
                   <Form.Item
                     label="Name"
+                    // style={{ font: "bold" }}
                     name="name"
                     rules={[
                       { required: true, message: "Please enter your Name" },
@@ -78,7 +79,7 @@ const Register = () => {
                     ]}
                     hasFeedback
                   >
-                    <Input type="text" />
+                    <Input type="text" placeholder="Yadnesh Mahajan" />
                   </Form.Item>
                   <Form.Item
                     label="Email"
@@ -89,7 +90,11 @@ const Register = () => {
                     ]}
                     hasFeedback
                   >
-                    <Input type="email" required />
+                    <Input
+                      type="email"
+                      placeholder="user@vjti.ac.in"
+                      required
+                    />
                   </Form.Item>
                   <Form.Item
                     label="Password"
@@ -102,7 +107,12 @@ const Register = () => {
                     ]}
                     hasFeedback
                   >
-                    <Input.Password name="up" type="password" required />
+                    <Input.Password
+                      name="up"
+                      type="password"
+                      placeholder="••••••••"
+                      required
+                    />
                   </Form.Item>
                   <Form.Item
                     label="Confirm Password"
@@ -123,13 +133,25 @@ const Register = () => {
                     ]}
                     hasFeedback
                   >
-                    <Input.Password name="up2" type="password" required />
+                    <Input.Password
+                      name="up2"
+                      placeholder="••••••••"
+                      type="password"
+                      required
+                    />
                   </Form.Item>
-                  <Link to="/login" className="m-2">
+                  <Link
+                    to="/login"
+                    style={{ fontWeight: "bold" }}
+                    className="m-2 no-underline"
+                  >
                     Already user login here
                   </Link>
-                  <button className="btn btn-primary" type="submit">
-                    Register
+                  <button
+                    className=" bg-blue-400 hover:cursor-pointer hover:bg-blue-700 text-gray-800 font-bold py-2 px-4 rounded w-100 font-weight-bold mt-4"
+                    type="submit"
+                  >
+                    Submit
                   </button>
                 </Form>
               </div>
