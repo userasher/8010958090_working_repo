@@ -25,23 +25,6 @@ const getAllUsersController = async (req, res) => {
   }
 };
 
-// const getAllDoctorsController = async (req, res) => {
-//   try {
-//     const doctors = await railwayModel.find({});
-//     res.status(200).send({
-//       success: true,
-//       message: "Doctors Data list",
-//       data: doctors,
-//     });
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).send({
-//       success: false,
-//       message: "error while getting doctors data",
-//       error,
-//     });
-//   }
-// };
 const getAllDoctorsController = async (req, res) => {
   try {
     const doctors = await railwayModel.find({}).sort({ createdAt: -1 });
@@ -116,28 +99,6 @@ const getAllDoctorsPrintBYnoController = async (req, res) => {
   }
 };
 
-// const getAllDoctorsPrintController = async (req, res) => {
-//   try {
-//     // const { minValue, maxValue } = req.body;
-//     // console.log(minValue, maxValue);
-//     const doctors = await railwayModel
-//       .find({ status: "approved" })
-//       // .sort({ "railwayModel.regno": 1 });
-//       .sort({ createdAt: -1 });
-//     res.status(200).send({
-//       success: true,
-//       message: "Doctors Data list",
-//       data: doctors,
-//     });
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).send({
-//       success: false,
-//       message: "error while getting doctors data",
-//       error,
-//     });
-//   }
-// };
 const getAllDoctorsPrintController = async (req, res) => {
   try {
     const { minValue, maxValue } = req.body;
@@ -229,36 +190,6 @@ const addTicketNO = async (req, res) => {
     });
   }
 };
-// doctor account status
-// const changeVerificationStatusController = async (req, res) => {
-//   try {
-//     const { doctorId, verificationstatus } = req.body;
-//     const doctor = await railwayModel.findByIdAndUpdate(doctorId, {
-//       verificationstatus,
-//     });
-//     const user = await userModel.findOne({ _id: doctor.userId });
-//     const notifcation = user.notifcation;
-//     notifcation.push({
-//       type: "notification-for-account-request-updated",
-//       message: `Your Application Account Request Has been verified successfully `,
-//       onClickPath: "/notification",
-//     });
-//     user.isVerified === "approved" ? true : false;
-//     await user.save();
-//     res.status(201).send({
-//       success: true,
-//       message: "Account Status verified",
-//       data: doctor,
-//     });
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).send({
-//       success: false,
-//       message: "Eror in Account Status verification",
-//       error,
-//     });
-//   }
-// };
 const changeVerificationStatusController = async (req, res) => {
   try {
     const { doctorId, verificationstatus } = req.body;
@@ -289,26 +220,6 @@ const changeVerificationStatusController = async (req, res) => {
     });
   }
 };
-// const checkVerificationStatus = async (req, res) => {
-//   try {
-//     const { doctorId } = req.body;
-//     const doctors = await railwayModel.findById(doctorId);
-//     const user = await userModel.findOne({ _id: doctors.userId });
-
-//     res.status(200).send({
-//       success: true,
-//       message: "Account status fetched ",
-//       data: user.isVerified === true,
-//     });
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).send({
-//       success: false,
-//       message: "error while getting verification status",
-//       error,
-//     });
-//   }
-// };
 const checkVerificationStatus = async (req, res) => {
   try {
     const { doctorId, userId } = req.body;

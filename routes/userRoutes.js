@@ -1,6 +1,8 @@
 const express = require("express");
 const nodemailer = require("nodemailer");
 const jwt = require("jsonwebtoken");
+const dotenv = require("dotenv");
+
 const {
   loginController,
   registerController,
@@ -18,6 +20,7 @@ const keysecret = process.env.JWT_SECRET;
 var bcrypt = require("bcryptjs");
 //router onject
 const router = express.Router();
+dotenv.config();
 
 //routes
 //LOGIN || POST
@@ -31,30 +34,26 @@ router.post("/getUserData", authMiddleware, authController);
 //Register|| POST
 router.post("/apply-form", authMiddleware, authApplyController);
 
-// router.post("/apply-doctor", authMiddleware, applyDoctorController);
-
-// router.post("/apply-doctor", authMiddleware, applyDoctorController);
-
 // NOTIFICATION || post
 router.post("/get-all-notification", authMiddleware, geAllController);
 
 // NOTIFICATION DELete || post
 // for uploading images
-router.post("/store-image", async (req, res) => {
-  try {
-    const { image } = req.body;
-    if (!image) {
-      return res.status(400).json({ msg: "Please enter an icon url" });
-    }
-    let newImage = new railwayModel({
-      image,
-    });
-    newImage = await newImage.save();
-    res.json(newImage);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-});
+// router.post("/store-image", async (req, res) => {
+//   try {
+//     const { image } = req.body;
+//     if (!image) {
+//       return res.status(400).json({ msg: "Please enter an icon url" });
+//     }
+//     let newImage = new railwayModel({
+//       image,
+//     });
+//     newImage = await newImage.save();
+//     res.json(newImage);
+//   } catch (err) {
+//     res.status(500).json({ error: err.message });
+//   }
+// });
 
 router.post(
   "/delete-all-notification",
@@ -177,17 +176,14 @@ module.exports = router;
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "rgnagrut_b20@ee.vjti.ac.in",
-    pass: "jlcikdqvzjvrptjx",
+    // user: "rgnagrut_b20@ee.vjti.ac.in",
+    user: process.env.EMAIL_ID,
+    // user: `${process.env.EMAIL_ID}`,
+    // pass: "jlcikdqvzjvrptjx",
+    pass: process.env.PASSWORD_PASS,
   },
 });
-// const transporter = nodemailer.createTransport({
-//   service: "gmail",
-//   auth: {
-//     user: process.env.EMAIL,
-//     pass: process.env.PASSWORD,
-//   },
-// });
+
 // send email Link For reset Password
 router.post("/sendpasswordlink", async (req, res) => {
   console.log(req.body);
@@ -218,9 +214,9 @@ router.post("/sendpasswordlink", async (req, res) => {
 
     if (setusertoken) {
       const mailOptions = {
-        from: "rgnagrut_b20@ee.vjti.ac.in",
+        from: process.env.EMAIL_ID,
         to: email,
-        subject: "Sending Email For password Reset",
+        subject: "VJTI Railway Concession / Password Reset",
         text: `This Link Valid For 2 MINUTES http://localhost:3000/forgotpassword/${userfind.id}/${setusertoken.verifytoken}`,
       };
 
