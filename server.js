@@ -7,7 +7,7 @@ const multer = require("multer");
 const { uploadImage } = require("./controllers/adminCtrl");
 const router = require("./routes/userRoutes");
 const path = require("path");
-// const ImageModel = require("./models/imageModels");
+
 dotenv.config();
 
 //mongodb connection
@@ -80,6 +80,10 @@ app.use("/api/v1/admin", require("./routes/adminRoutes"));
 //     });
 // });
 /*********For uploading codes */
+app.use(express.static(path.join(__dirname, "./client/build")));
+app.get("*", function (req, res) {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
 const port = process.env.PORT || 8080;
 //listen port
 app.listen(port, () => {

@@ -1,17 +1,17 @@
 {
-  "name": "doc-appoinment-system",
+  "name": "Railway-Concession-Application",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "server": "nodemon serevr.js",
+    "server": "nodemon server.js",
     "client": "npm start --prefix ./client ",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [],
-  "author": "techinfyt",
-  "license": "MIT",
+  "author": "Rohan Nagrut",
+  "license": "Vjti",
   "dependencies": {
     "@ant-design/icons": "^5.1.4",
     "@material-ui/core": "^4.12.4",
