@@ -80,10 +80,18 @@ app.use("/api/v1/admin", require("./routes/adminRoutes"));
 //     });
 // });
 /*********For uploading codes */
-app.use(express.static(path.join(__dirname, "./client/build")));
-app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
+// app.use(express.static(path.join(__dirname, "./client/build")));
+// app.get("*", function (req, res) {
+//   res.sendFile(path.join(__dirname, "./client/build/index.html"));
+// });
+if (process.env.NODE_ENV === "production") {
+  //*Set static folder up in production
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
+  );
+}
 const port = process.env.PORT || 8080;
 //listen port
 app.listen(port, () => {
