@@ -8,12 +8,17 @@
 
 .sidebar {
   min-height: 100%;
-  width: 300px;
+  /* display: flex; */
+  width: auto;
+
+  color: rgb(236, 226, 226);
+
   border-radius: 5px;
   background-color: rgb(51, 1, 1);
-  box-shadow: 0 0 2px gray;
-  margin-right: 20px;
-  color: white;
+  box-shadow: 0 0 3px rgb(20, 20, 20);
+  /* margin-right: 20px; */
+  /* align-items: left; */
+  /* color: white; */
 }
 
 .content {
@@ -24,7 +29,7 @@
 .header {
   height: 10vh;
   margin-bottom: 20px;
-  box-shadow: 0 0 2px gray;
+  box-shadow: 0 0 2px rgb(28, 27, 27);
   background-color: white;
 }
 .body {
@@ -37,6 +42,7 @@
   font-size: 1.5rem;
   text-align: center;
   margin: 20px 0px;
+  /* color: wheat; */
 }
 .menu {
   margin-top: 50px;
@@ -59,7 +65,7 @@
 }
 .active a,
 .active i {
-  color: rgb(51, 1, 1);
+  color: rgb(39, 26, 26);
 }
 
 .header-content {

@@ -78,7 +78,30 @@ const authController = async (req, res) => {
     });
   }
 };
-
+const authControllerAdmin = async (req, res) => {
+  try {
+    const user = await userModel.findById({ _id: req.body.userId });
+    user.password = undefined;
+    if (!user.isAdmin) {
+      return res.status(200).send({
+        message: "Access denied",
+        success: false,
+      });
+    } else {
+      res.status(200).send({
+        success: true,
+        data: user,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      message: "auth error",
+      success: false,
+      error,
+    });
+  }
+};
 // Apply controller
 const authApplyController = async (req, res) => {
   try {
@@ -155,15 +178,18 @@ const geAllController = async (req, res) => {
 const deleteAllNotificationController = async (req, res) => {
   try {
     const user = await userModel.findOne({ _id: req.body.userId });
+
     const seennotification = user.seennotification;
     const notifcation = user.notifcation;
     seennotification.push(...notifcation);
     user.notifcation = [];
     user.seennotification = notifcation;
+
     const updatedUser = await user.save();
     res.status(200).send({
       success: true,
       message: "All notification marked as read",
+
       data: updatedUser,
     });
   } catch (error) {
@@ -178,6 +204,7 @@ const deleteAllNotificationController = async (req, res) => {
 module.exports = {
   loginController,
   registerController,
+  authControllerAdmin,
   authController,
   authApplyController,
   // applyDoctorController

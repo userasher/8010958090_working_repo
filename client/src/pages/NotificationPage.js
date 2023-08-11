@@ -32,7 +32,7 @@ const NotificationPage = () => {
       }
     } catch (error) {
       dispatch(hideLoading());
-      console.log(error);
+      // console.log(error);
       message.error("something went wrong");
     }
   };
@@ -60,7 +60,7 @@ const NotificationPage = () => {
       }
     } catch (error) {
       dispatch(hideLoading());
-      console.log(error);
+      // console.log(error);
       message.error("something went wrong");
     }
   };
@@ -73,7 +73,10 @@ const NotificationPage = () => {
             <button className="p-2 btn btn-success" onClick={handleMarkAllRead}>
               Mark All Read
             </button>
+
           </div>
+
+          
           {user?.notifcation.map((notificationMgs) => (
             <div
               className="card"

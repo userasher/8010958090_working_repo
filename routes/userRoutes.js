@@ -10,6 +10,7 @@ const {
   authApplyController,
   geAllController,
   deleteAllNotificationController,
+  authControllerAdmin,
   // applyDoctorController,
 } = require("../controllers/userCtrl");
 const authMiddleware = require("../middlewares/authMiddleware");
@@ -31,6 +32,7 @@ router.post("/register", registerController);
 
 //Auth || POST
 router.post("/getUserData", authMiddleware, authController);
+router.post("/checkUserAdmin", authMiddleware, authControllerAdmin);
 //Register|| POST
 router.post("/apply-form", authMiddleware, authApplyController);
 
@@ -219,6 +221,16 @@ router.post("/sendpasswordlink", async (req, res) => {
         subject: "VJTI Railway Concession / Password Reset",
         text: `This Link Valid For 2 MINUTES http://localhost:3000/forgotpassword/${userfind.id}/${setusertoken.verifytoken}`,
       };
+      // if (setusertoken) {
+      //   const mailOptions = {
+      //     from: process.env.EMAIL_ID,
+      //     to: email,
+      //     subject: "VJTI Railway Concession / Password Reset",
+      //     text: `This Link Valid For 2 MINUTES ${req.protocol}://${localStorage.}/forgotpassword/${userfind.id}/${setusertoken.verifytoken}`,
+      //   };
+      {
+        // console.log(req.connection.remoteAddress);
+      }
 
       transporter.sendMail(mailOptions, (error, info) => {
         if (error) {

@@ -109,7 +109,7 @@ const Doctors = () => {
         window.location.reload();
       }
     } catch (error) {
-      message.error("something went wrong");
+      message.success("Done");
     }
   };
   const handleAccountStatustoVerify = async (record, verificationstatus) => {
@@ -321,6 +321,20 @@ const Doctors = () => {
     //   },
     // },
     {
+      title: "Actions verify",
+      dataIndex: "_id",
+      render: (id, record) => (
+        <div className="d-flex">
+          <button
+            className="btn btn-primary"
+            onClick={() => VerifyStatusofUser(record)}
+          >
+            Verify Status
+          </button>
+        </div>
+      ),
+    },
+    {
       title: "Documents",
       dataIndex: "links",
       render: (text, record) => (
@@ -329,6 +343,27 @@ const Doctors = () => {
         </div>
       ),
     },
+    {
+      title: "Actions",
+      dataIndex: "actions",
+      render: (text, record) => (
+        <div className="d-flex">
+          {record.verificationstatus === "pending" ? (
+            <button
+              className="btn btn-success"
+              onClick={() => handleAccountStatustoVerify(record, "approved")}
+            >
+              Verify
+            </button>
+          ) : (
+            <button className="btn btn-secondary" disabled>
+              Verified
+            </button>
+          )}
+        </div>
+      ),
+    },
+
     // {
     //   title: "Verify Documents",
     //   dataIndex: "actions",
@@ -362,11 +397,11 @@ const Doctors = () => {
     //   //   <button onClick={() => addRegNo(record, regno)}>Submit</button>
     //   // </Form>
     // },
-    {
-      title: "Document Verification Status",
-      dataIndex: "actions",
-      // render: (record) => {},
-    },
+    // {
+    //   title: "Document Verification Status",
+    //   dataIndex: "actions",
+    //   // render: (record) => {},
+    // },
 
     // {
     //   title: "Status",
@@ -485,40 +520,7 @@ const Doctors = () => {
     //     </div>
     //   ),
     // },
-    {
-      title: "Actions",
-      dataIndex: "actions",
-      render: (text, record) => (
-        <div className="d-flex">
-          {record.verificationstatus === "pending" ? (
-            <button
-              className="btn btn-success"
-              onClick={() => handleAccountStatustoVerify(record, "approved")}
-            >
-              Verify
-            </button>
-          ) : (
-            <button className="btn btn-secondary" disabled>
-              Verified
-            </button>
-          )}
-        </div>
-      ),
-    },
-    {
-      title: "Actions verify",
-      dataIndex: "_id",
-      render: (id, record) => (
-        <div className="d-flex">
-          <button
-            className="btn btn-primary"
-            onClick={() => VerifyStatusofUser(record)}
-          >
-            Verify Status
-          </button>
-        </div>
-      ),
-    },
+
     // {
     //   title: "Voucher No",
     //   dataIndex: "railwayTicketNo",
@@ -528,7 +530,7 @@ const Doctors = () => {
       dataIndex: "railwayTicketNo",
     },
     {
-      title: "Actions",
+      title: "Approve",
       dataIndex: "actions",
       render: (text, record) => (
         <div className="d-flex">
@@ -550,7 +552,7 @@ const Doctors = () => {
       ),
     },
     {
-      title: "Actions",
+      title: "Reject",
       dataIndex: "actions",
       render: (text, record) => (
         <div className="d-flex">
@@ -571,48 +573,48 @@ const Doctors = () => {
         </div>
       ),
     },
-    // {
-    //   title: "Delete ",
-    //   dataIndex: "_id",
-    //   render: (id, record) => (
-    //     <div>
-    //       <Button
-    //         style={{ color: "red", cursor: "pointer" }}
-    //         onClick={() => {
-    //           deleteSelectedBill(record);
-    //         }}
-    //       >
-    //         Delete
-    //       </Button>
-    //     </div>
-    //   ),
-    // },
     {
-      title: "Delete",
+      title: "Delete ",
       dataIndex: "_id",
-      render: (id, record) => {
-        const createdAtDate = moment(record.createdAt); // Convert the createdAt date to a moment object
-        const currentDate = moment(); // Get the current date as a moment object
-        const isOlderThan4Years = createdAtDate.isBefore(
-          currentDate.subtract(4, "years")
-        );
-
-        return (
-          <div>
-            {isOlderThan4Years && (
-              <Button
-                style={{ color: "red", cursor: "pointer" }}
-                onClick={() => {
-                  deleteSelectedBill(record);
-                }}
-              >
-                Delete
-              </Button>
-            )}
-          </div>
-        );
-      },
+      render: (id, record) => (
+        <div>
+          <Button
+            style={{ color: "red", cursor: "pointer" }}
+            onClick={() => {
+              deleteSelectedBill(record);
+            }}
+          >
+            Delete
+          </Button>
+        </div>
+      ),
     },
+    // {
+    //   title: "Delete",
+    //   dataIndex: "_id",
+    //   render: (id, record) => {
+    //     const createdAtDate = moment(record.createdAt); // Convert the createdAt date to a moment object
+    //     const currentDate = moment(); // Get the current date as a moment object
+    //     const isOlderThan4Years = createdAtDate.isBefore(
+    //       currentDate.subtract(4, "years")
+    //     );
+
+    //     return (
+    //       <div>
+    //         {isOlderThan4Years && (
+    //           <Button
+    //             style={{ color: "red", cursor: "pointer" }}
+    //             onClick={() => {
+    //               deleteSelectedBill(record);
+    //             }}
+    //           >
+    //             Delete
+    //           </Button>
+    //         )}
+    //       </div>
+    //     );
+    //   },
+    // },
 
     {
       title: "Print's",
@@ -800,7 +802,7 @@ const Doctors = () => {
                 <span className="prvclass">1st</span>
                 <span className="prvticketno">1234</span>
               </div>
-              <div >
+              <div>
                 <span className="prevfrom">alibag</span>
                 <span className="prevto">nashik</span>
               </div>

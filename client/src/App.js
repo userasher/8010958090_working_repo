@@ -6,17 +6,19 @@ import { useSelector } from "react-redux";
 import Spinner from "./components/Spinner";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute";
+import ErrorPage from "./components/errorPage";
 import ApplyForm from "./pages/ApplyForm";
 import NotificationPage from "./pages/NotificationPage";
-import Users from "./pages/admin/Users";
+// import Users from "./pages/admin/Users";
 import Doctors from "./pages/admin/Doctors";
 import GeneratePdf from "./pages/GeneratePdf";
-import RailwayForm from "./pages/admin/RailwayForm";
-import UploadImage from "./pages/UploadImage";
-import ImageUploader from "./pages/ImageUploader";
-import Profile from "./pages/Profile";
+// import RailwayForm from "./pages/admin/RailwayForm";
+// import UploadImage from "./pages/UploadImage";
+// import ImageUploader from "./pages/ImageUploader";
+// import Profile from "./pages/Profile";
 import PasswordReset from "./pages/PasswordReset";
 import ForgotPassword from "./pages/ForgotPassword";
+import ProtectedRoute1 from "./components/ProtectedRoute1";
 // import Profile from "./pages/doctor/Profile";
 // import Profile from "./pages/Profile";
 // import ApplyDoctor from "./pages/ApplyDoctor";
@@ -47,19 +49,13 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            {/* <Route
-              path="/admin/users"
-              element={
-                <ProtectedRoute>
-                  <Users />
-                </ProtectedRoute>
-              }
-            /> */}
             <Route
               path="/generate-pdf"
               element={
                 <ProtectedRoute>
-                  <GeneratePdf />
+                  <ProtectedRoute1>
+                    <GeneratePdf />
+                  </ProtectedRoute1>
                 </ProtectedRoute>
               }
             />
@@ -67,53 +63,28 @@ function App() {
               path="/admin/doctors"
               element={
                 <ProtectedRoute>
-                  <Doctors />
+                  <ProtectedRoute1>
+                    <Doctors />
+                  </ProtectedRoute1>
                 </ProtectedRoute>
               }
             />
-            <Route
+            {/* <Route
               path="/add-documents"
               element={
                 <ProtectedRoute>
                   <UploadImage />
                 </ProtectedRoute>
               }
-            />
-            <Route
+            /> */}
+            {/* <Route
               path="/upload-image"
               element={
                 <ProtectedRoute>
                   <ImageUploader />
                 </ProtectedRoute>
               }
-            />
-
-            {/* <Route
-              path="/apply-doctor"
-              element={
-                <ProtectedRoute>
-                  <ApplyDoctor />
-                </ProtectedRoute>
-              }
             /> */}
-            {/* <Route
-              path="/users/profile/:id"
-              element={
-                <ProtectedRoute>
-                  <Profile />
-                </ProtectedRoute>
-              }
-            /> */}
-            {/* extra */}
-            {/* <Route
-              path="/doctor/profile/:id"
-              element={
-                <ProtectedRoute>
-                  <Profile />
-                </ProtectedRoute>
-              }
-            /> */}
-            {/* extra */}
             <Route
               path="/notification"
               element={
@@ -154,11 +125,11 @@ function App() {
                 </PublicRoute>
               }
             />
+            <Route path="*" element={<ErrorPage />} />
           </Routes>
         )}
       </BrowserRouter>
     </>
   );
 }
-
 export default App;
