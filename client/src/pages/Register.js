@@ -5,14 +5,11 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../redux/features/alertSlice";
-import { Option } from "antd/es/mentions";
 
 import "./LoginStyle.css";
 const Register = () => {
   const navigate = useNavigate();
-  // const { Option } = Select;
   const dispatch = useDispatch();
-  //form handler
 
   const onfinishHandler = async (values) => {
     try {
@@ -67,7 +64,7 @@ const Register = () => {
                   className="w-100"
                   oninput='up2.setCustomValidity(up2.value != up.value ? "Passwords do not match." : "")'
                 >
-                  <h3 className="text-center ">Create your Account </h3>
+                  <h3 className="text-center ">Create New Account </h3>
                   <Form.Item
                     label="Name"
                     // style={{ font: "bold" }}
@@ -79,10 +76,10 @@ const Register = () => {
                     ]}
                     hasFeedback
                   >
-                    <Input type="text" placeholder="Yadnesh Mahajan" />
+                    <Input type="text" placeholder="Your Name" />
                   </Form.Item>
                   <Form.Item
-                    label="Email"
+                    label="Vjti Email id"
                     name="email"
                     rules={[
                       { required: true, message: "Please enter your Email" },
@@ -92,7 +89,7 @@ const Register = () => {
                   >
                     <Input
                       type="email"
-                      placeholder="user@vjti.ac.in"
+                      placeholder="userb20@vjti.ac.in"
                       required
                     />
                   </Form.Item>
@@ -143,9 +140,9 @@ const Register = () => {
                   <Link
                     to="/login"
                     style={{ fontWeight: "bold" }}
-                    className="m-2 no-underline"
+                    className="m-2 "
                   >
-                    Already user login here
+                    Already a user login here
                   </Link>
                   <button
                     className=" bg-blue-400 hover:cursor-pointer hover:bg-blue-700 text-gray-800 font-bold py-2 px-4 rounded w-100 font-weight-bold mt-4"
@@ -159,104 +156,6 @@ const Register = () => {
           </div>
         </div>
       </div>
-      {/* 
-      <div
-        class="vh-100 bg-image"
-        style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');"
-      >
-        <div class="mask d-flex align-items-center h-100 gradient-custom-3">
-          <div class="container h-100">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-              <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-                <div class="card" style="border-radius: 15px;">
-                  <div class="card-body p-5">
-                    <h2 class="text-uppercase text-center mb-5">
-                      Create an account
-                    </h2>
-
-                    <form>
-                      <div class="form-outline mb-4">
-                        <input
-                          type="text"
-                          id="form3Example1cg"
-                          class="form-control form-control-lg"
-                        />
-                        <label class="form-label" for="form3Example1cg">
-                          Your Name
-                        </label>
-                      </div>
-
-                      <div class="form-outline mb-4">
-                        <input
-                          type="email"
-                          id="form3Example3cg"
-                          class="form-control form-control-lg"
-                        />
-                        <label class="form-label" for="form3Example3cg">
-                          Your Email
-                        </label>
-                      </div>
-
-                      <div class="form-outline mb-4">
-                        <input
-                          type="password"
-                          id="form3Example4cg"
-                          class="form-control form-control-lg"
-                        />
-                        <label class="form-label" for="form3Example4cg">
-                          Password
-                        </label>
-                      </div>
-
-                      <div class="form-outline mb-4">
-                        <input
-                          type="password"
-                          id="form3Example4cdg"
-                          class="form-control form-control-lg"
-                        />
-                        <label class="form-label" for="form3Example4cdg">
-                          Repeat your password
-                        </label>
-                      </div>
-
-                      <div class="form-check d-flex justify-content-center mb-5">
-                        <input
-                          class="form-check-input me-2"
-                          type="checkbox"
-                          value=""
-                          id="form2Example3cg"
-                        />
-                        <label class="form-check-label" for="form2Example3g">
-                          I agree all statements in{" "}
-                          <a href="#!" class="text-body">
-                            <u>Terms of service</u>
-                          </a>
-                        </label>
-                      </div>
-
-                      <div class="d-flex justify-content-center">
-                        <button
-                          type="button"
-                          class="btn btn-success btn-block btn-lg gradient-custom-4 text-body"
-                        >
-                          Register
-                        </button>
-                      </div>
-
-                      <p class="text-center text-muted mt-5 mb-0">
-                        Have already an account?{" "}
-                        <a href="#!" class="fw-bold text-body">
-                          <u>Login here</u>
-                        </a>
-                      </p>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> */}
     </>
   );
 };

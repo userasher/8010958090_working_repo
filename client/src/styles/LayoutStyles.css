@@ -1,6 +1,7 @@
 .main {
   padding: 10px;
   height: 100vh;
+  /* width: auto; */
 }
 .layout {
   display: flex;
@@ -33,7 +34,9 @@
   background-color: white;
 }
 .body {
-  height: 85vh;
+  min-height: 85vh;
+  height: auto;
+  min-width: fit-content;
   margin-bottom: 20px;
   box-shadow: 0 0 2px gray;
   background-color: white;

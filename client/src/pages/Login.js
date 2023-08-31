@@ -33,36 +33,6 @@ const Login = () => {
     }
   };
   return (
-    // <div className="form-container ">
-    //   <Form
-    //     layout="vertical"
-    //     onFinish={onfinishHandler}
-    //     className="register-form"
-    //   >
-    //     <h3 className="text-center">Login From</h3>
-
-    //     <Form.Item label="Email" name="email">
-    //       <Input type="email" required />
-    //     </Form.Item>
-    //     <Form.Item label="Password" name="password">
-    //       <Input type="password" required />
-    //     </Form.Item>
-    //     <Link to="/register" className="m-2">
-    //       Not a user Register here
-    //     </Link>
-    //     <Link
-    //       style={{ color: "black", fontWeight: "bold" }}
-    //       to="/password-reset"
-    //       className="m-2"
-    //     >
-    //       Forgot Password
-    //     </Link>
-    //     <button className="btn btn-primary" type="submit">
-    //       Login
-    //     </button>
-    //   </Form>
-    // </div>
-
     <div class="container offset  ">
       <div class="row m-5 no-gutters shadow-lg">
         <div class="col-md-6 d-none d-md-block">
@@ -100,16 +70,8 @@ const Login = () => {
               action="/"
             >
               <div class="form-group pb-3">
-                {/* <input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  class="form-control"
-                  id="email"
-                  required
-                /> */}
                 <Form.Item
-                  label="Email"
+                  label="Vjti Email id"
                   name="email"
                   rules={[
                     { required: true, message: "Please enter your Email" },
@@ -126,14 +88,6 @@ const Login = () => {
                 </Form.Item>
               </div>
               <div class="form-group pb-3">
-                {/* <input
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  class="form-control"
-                  id="password"
-                  required
-                /> */}
                 <Form.Item label="Password" name="password">
                   <Input.Password
                     class="form-control"
@@ -162,7 +116,6 @@ const Login = () => {
               <div class="pb-2 mt-4">
                 <button
                   type="submit"
-                  // style={{ backgroundC7olor: "blue" }}
                   className=" bg-blue-500  hover:bg-blue-700 text-gray-800 font-bold py-2 px-4 rounded w-100 font-weight-bold"
                 >
                   Login
@@ -170,7 +123,7 @@ const Login = () => {
               </div>
             </Form>
 
-            <div class="pt-4 text-right mt-2 ">
+            <div class="pt-4 text-center mt-2 ">
               <Link
                 to="/register"
                 className="bg-blue-500 border-black hover:bg-blue-700 text-white font-bold py-2 px-4 rounded no-underline "

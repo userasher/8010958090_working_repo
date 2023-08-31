@@ -3,8 +3,8 @@
   margin-right: 360px;
 }
 .abc {
-  margin-right: 719px;
-  margin-top: 11px;
+  margin-right: 730px;
+  margin-top: 10px;
 }
 .birth {
   margin-top: -25px;
@@ -13,22 +13,27 @@
   margin-right: 75px;
 }
 .age {
-  margin-right: 450px;
+  margin-right: 456px;
 }
 .box {
   margin-top: 80px;
 }
 .lclass {
-  margin-right: 3px;
+  margin-right: 35px;
+  font-size: 13px;
 }
 .lperiod {
-  margin-right: 2px;
+  margin-right: 30px;
+  font-size: 13px;
 }
 .lfrom {
-  margin-right: 10px;
+  margin-right: 25px;
+  /* margin-top: 15px; */
+  font-size: 13px;
 }
 .lto {
-  margin-right: 57px;
+  margin-right: 60px;
+  font-size: 13px;
 }
 .rclass {
   margin-right: 69px;

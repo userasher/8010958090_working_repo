@@ -18,7 +18,9 @@ const registerController = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
     req.body.password = hashedPassword;
     const newUser = new userModel(req.body);
+
     await newUser.save();
+
     res.status(201).send({ message: "Register Sucessfully", success: true });
   } catch (error) {
     console.log(error);
@@ -141,7 +143,7 @@ const authApplyController = async (req, res) => {
     await userModel.findByIdAndUpdate(adminUser._id, { notifcation });
     res.status(201).send({
       success: true,
-      message: "Applied Successfully",
+      message: "Applied Successfully for Railway Concession ",
     });
   } catch (error) {
     console.log(error);
@@ -186,6 +188,7 @@ const deleteAllNotificationController = async (req, res) => {
     user.seennotification = notifcation;
 
     const updatedUser = await user.save();
+
     res.status(200).send({
       success: true,
       message: "All notification marked as read",

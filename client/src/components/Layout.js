@@ -16,31 +16,11 @@ const Layout = ({ children }) => {
     message.success("Logout Successfully");
     navigate("/login");
   };
-  // ==== Doctormenu =====
-  const doctorMenu = [
-    {
-      name: "Home",
-      path: "/",
-      icon: "fa-solid fa-house",
-    },
-    {
-      name: "Form",
-      path: "/apply-form",
-      icon: "fa-solid fa-user-doctor",
-    },
-  ];
-
-  // =======Doctor menu====
-  // redering menu list
-  const SidebarMenu = user?.isAdmin
-    ? adminMenu
-    : user?.isDoctor
-    ? doctorMenu
-    : userMenu;
+  const SidebarMenu = user?.isAdmin ? adminMenu : userMenu;
   return (
     <>
       <div className="main">
-        <div className="layout ">
+        <div className="layout">
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="flex float-right px-3  rounded  hover:text-black-400"
@@ -68,27 +48,24 @@ const Layout = ({ children }) => {
                 isOpen ? "block" : "hidden"
               }`}
             >
-              {/* <div className="logo"> */}
-              {/* <h6>Railway </h6> */}
               <hr />
-              {/* </div> */}
               <div className="lg:flex-grow left-0">
                 <div className="">
                   {SidebarMenu.map((menu) => {
                     const isActive = location.pathname === menu.path;
                     return (
-                      <>
-                        <div
-                          className={`menu-item ${
-                            isActive && "active"
-                          } flex flex-row w-full md:py-0 `}
-                        >
-                          <i className={menu.icon}></i>
-                          <Link to={menu.path}>{menu.name}</Link>
-                        </div>
-                      </>
+                      <div
+                        key={menu.path} // Add the key prop here
+                        className={`menu-item ${
+                          isActive && "active"
+                        } flex flex-row w-full md:py-0 `}
+                      >
+                        <i className={menu.icon}></i>
+                        <Link to={menu.path}>{menu.name}</Link>
+                      </div>
                     );
                   })}
+
                   <div className={`menu-item `} onClick={handleLogout}>
                     <i className="fa-solid fa-right-from-bracket "></i>
                     <Link to="/login">Logout</Link>
@@ -112,6 +89,7 @@ const Layout = ({ children }) => {
               </div>
             </div>
             <div className="body">{children}</div>
+            <h5>Created Under </h5>
           </div>
         </div>
       </div>

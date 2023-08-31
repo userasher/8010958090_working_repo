@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { hideLoading, showLoading } from "../redux/features/alertSlice";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+// import "./NotificationPage.scss";
 
 const NotificationPage = () => {
   const { user } = useSelector((state) => state.user);
@@ -73,13 +74,11 @@ const NotificationPage = () => {
             <button className="p-2 btn btn-success" onClick={handleMarkAllRead}>
               Mark All Read
             </button>
-
           </div>
 
-          
           {user?.notifcation.map((notificationMgs) => (
             <div
-              className="card"
+              className="card mt-3 ml-4 w-fit"
               style={{ cursor: "pointer" }}
               // onClick={() => navigate(notificationMgs.onClickPath)}
             >
@@ -98,11 +97,7 @@ const NotificationPage = () => {
             </button>
           </div>
           {user?.seennotification.map((notificationMgs) => (
-            <div
-              className="card"
-              style={{ cursor: "pointer" }}
-              // onClick={() => navigate(notificationMgs.onClickPath)}
-            >
+            <div className="card" style={{ cursor: "pointer" }}>
               <div className="card-text">{notificationMgs.message}</div>
             </div>
           ))}

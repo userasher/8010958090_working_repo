@@ -9,19 +9,11 @@ import PublicRoute from "./components/PublicRoute";
 import ErrorPage from "./components/errorPage";
 import ApplyForm from "./pages/ApplyForm";
 import NotificationPage from "./pages/NotificationPage";
-// import Users from "./pages/admin/Users";
 import Doctors from "./pages/admin/Doctors";
 import GeneratePdf from "./pages/GeneratePdf";
-// import RailwayForm from "./pages/admin/RailwayForm";
-// import UploadImage from "./pages/UploadImage";
-// import ImageUploader from "./pages/ImageUploader";
-// import Profile from "./pages/Profile";
 import PasswordReset from "./pages/PasswordReset";
 import ForgotPassword from "./pages/ForgotPassword";
 import ProtectedRoute1 from "./components/ProtectedRoute1";
-// import Profile from "./pages/doctor/Profile";
-// import Profile from "./pages/Profile";
-// import ApplyDoctor from "./pages/ApplyDoctor";
 
 function App() {
   const { loading } = useSelector((state) => state.alerts);
@@ -69,22 +61,6 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            {/* <Route
-              path="/add-documents"
-              element={
-                <ProtectedRoute>
-                  <UploadImage />
-                </ProtectedRoute>
-              }
-            /> */}
-            {/* <Route
-              path="/upload-image"
-              element={
-                <ProtectedRoute>
-                  <ImageUploader />
-                </ProtectedRoute>
-              }
-            /> */}
             <Route
               path="/notification"
               element={

@@ -178,33 +178,27 @@ module.exports = router;
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    // user: "rgnagrut_b20@ee.vjti.ac.in",
     user: process.env.EMAIL_ID,
-    // user: `${process.env.EMAIL_ID}`,
-    // pass: "jlcikdqvzjvrptjx",
     pass: process.env.PASSWORD_PASS,
   },
 });
 
 // send email Link For reset Password
 router.post("/sendpasswordlink", async (req, res) => {
-  console.log(req.body);
-
-  const { email } = req.body;
-
-  if (!email) {
-    res.status(401).json({ status: 401, message: "Enter Your Email" });
-  }
-
+  // console.log(req.body);
+  // const { email } = req.body;
   try {
+    const email = req.body.email;
     const userfind = await userModel.findOne({ email: email });
-
+    if (!email) {
+      res.status(401).json({ status: 401, message: "Enter Your Email" });
+    }
     // token generate for reset password
     // console.log("userfind", userfind);
-
+    console.log(userfind);
     const token = jwt.sign({ _id: userfind._id }, process.env.JWT_SECRET, {
-      // expiresIn: "120s",
-      expiresIn: "1d",
+      expiresIn: "900s",
+      // expiresIn: "1d",
     });
     // console.log("token", token);
     const setusertoken = await userModel.findByIdAndUpdate(
@@ -213,24 +207,16 @@ router.post("/sendpasswordlink", async (req, res) => {
       { new: true }
     );
     // console.log("setusertoken", setusertoken);
+    const resetPasswordLink = `https://railway-production-2.onrender.com/forgotpassword/${userfind.id}/${setusertoken.verifytoken}`;
 
     if (setusertoken) {
       const mailOptions = {
         from: process.env.EMAIL_ID,
         to: email,
-        subject: "VJTI Railway Concession / Password Reset",
-        text: `This Link Valid For 2 MINUTES http://localhost:3000/forgotpassword/${userfind.id}/${setusertoken.verifytoken}`,
+        subject: "Vjti Railway Concession Password Reset",
+        // text: `This Link Valid For 2 MINUTES http://localhost:3000/forgotpassword/${userfind.id}/${setusertoken.verifytoken} please reset your password`,
+        text: `This Link Valid For 5 MINUTES ${resetPasswordLink} please reset your password`,
       };
-      // if (setusertoken) {
-      //   const mailOptions = {
-      //     from: process.env.EMAIL_ID,
-      //     to: email,
-      //     subject: "VJTI Railway Concession / Password Reset",
-      //     text: `This Link Valid For 2 MINUTES ${req.protocol}://${localStorage.}/forgotpassword/${userfind.id}/${setusertoken.verifytoken}`,
-      //   };
-      {
-        // console.log(req.connection.remoteAddress);
-      }
 
       transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
@@ -245,7 +231,10 @@ router.post("/sendpasswordlink", async (req, res) => {
       });
     }
   } catch (error) {
-    res.status(401).json({ status: 401, message: "invalid user" });
+    // catch (error) {
+    //   res.status(401).json({ status: 401, message: "invalid hu me user" });
+    // }
+    console.log(error);
   }
 });
 

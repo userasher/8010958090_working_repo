@@ -3,7 +3,7 @@ import React, {
   useEffect,
   useRef,
   // createContext,
-  // useContext,
+  // useContext,e
 } from "react";
 import Layout from "./../../components/Layout";
 import { useReactToPrint } from "react-to-print";
@@ -27,9 +27,11 @@ import moment from "moment";
 // import RailwayForm from "./RailwayForm";
 // import UserContext from "./useContext";
 import "./InvoiceStyles.css";
+import { hideLoading, showLoading } from "../../redux/features/alertSlice";
 // import addRegisterationNo from "./addRegisterationNo";
 
 const Doctors = () => {
+  const dispatch = useDispatch();
   const componentRef = useRef();
   const [regno, setRegno] = useState(null);
   const [deleteno, setDeleteno] = useState(null);
@@ -105,8 +107,8 @@ const Doctors = () => {
         }
       );
       if (res.data.success) {
-        message.success(res.data.message);
         window.location.reload();
+        message.success(res.data.message);
       }
     } catch (error) {
       message.success("Done");
@@ -303,24 +305,6 @@ const Doctors = () => {
       dataIndex: "to",
     },
     {
-      title: "Season Ticket No",
-      dataIndex: "seasonticketNo",
-    },
-    // {
-    //   title: "Date from and to ",
-    //   dataIndex: "timings",
-    //   render: (record) => {
-    //     return (
-    //       <div>
-    //         <p>
-    //           {moment(record[0]).format("DD-MM-YYYY")} to{" "}
-    //           {moment(record[1]).format("DD-MM-YYYY")}
-    //         </p>
-    //       </div>
-    //     );
-    //   },
-    // },
-    {
       title: "Actions verify",
       dataIndex: "_id",
       render: (id, record) => (
@@ -363,50 +347,6 @@ const Doctors = () => {
         </div>
       ),
     },
-
-    // {
-    //   title: "Verify Documents",
-    //   dataIndex: "actions",
-    //   render: (record) => (
-    //     <Form>
-    //       <button
-    //         className="btn btn-success"
-    //         style={{
-    //           fontSize: "12px",
-    //           padding: "6px 12px",
-    //           borderRadius: "4px",
-    //           backgroundColor: "green",
-    //           color: "white",
-    //           border: "none",
-    //           cursor: "pointer",
-    //         }}
-    //         onClick={() => handleAccountStatustoVerify(record, "approved")}
-    //       >
-    //         Verify
-    //       </button>
-    //     </Form>
-    //   ),
-    //   // <Form>
-    //   //   <input
-    //   //     type="text"
-    //   //     value={regno}
-    //   //     onChange={(e) => {
-    //   //       setRegno(e.target.value);
-    //   //     }}
-    //   //   ></input>
-    //   //   <button onClick={() => addRegNo(record, regno)}>Submit</button>
-    //   // </Form>
-    // },
-    // {
-    //   title: "Document Verification Status",
-    //   dataIndex: "actions",
-    //   // render: (record) => {},
-    // },
-
-    // {
-    //   title: "Status",
-    //   dataIndex: "status",
-    // },
     {
       title: "phone",
       dataIndex: "phone",
@@ -472,59 +412,9 @@ const Doctors = () => {
             Submit
           </button>
         </Form>
-        // <>
-        //   <Button type="primary" onClick={showModal}>
-        //     Open Modal
-        //   </Button>
-        //   <Modal
-        //     title="Basic Modal"
-        //     open={isModalOpen}
-        //     onOk={handleOk}
-        //     onCancel={handleCancel}
-        //   >
-        //     <Form>
-        //       <input
-        //         type="text"
-        //         value={regno}
-        //         onChange={(e) => {
-        //           setRegno(e.target.value);
-        //         }}
-        //       ></input>
-        //       <button onClick={() => addRegNo(record, regno)}>Submit</button>
-        //     </Form>
-        //   </Modal>
-        // </>
       ),
-      // <Form>
-      //   <input
-      //     type="text"
-      //     value={regno}
-      //     onChange={(e) => {
-      //       setRegno(e.target.value);
-      //     }}
-      //   ></input>
-      //   <button onClick={() => addRegNo(record, regno)}>Submit</button>
-      // </Form>
     },
-    // {
-    //   title: "Actions",
-    //   dataIndex: "actions",
-    //   render: (text, record) => (
-    //     <div className="d-flex">
-    //       <button
-    //         className="btn btn-success"
-    //         onClick={() => handleAccountStatustoVerify(record, "approved")}
-    //       >
-    //         Verify
-    //       </button>
-    //     </div>
-    //   ),
-    // },
 
-    // {
-    //   title: "Voucher No",
-    //   dataIndex: "railwayTicketNo",
-    // },
     {
       title: "Voucher No",
       dataIndex: "railwayTicketNo",
@@ -589,33 +479,6 @@ const Doctors = () => {
         </div>
       ),
     },
-    // {
-    //   title: "Delete",
-    //   dataIndex: "_id",
-    //   render: (id, record) => {
-    //     const createdAtDate = moment(record.createdAt); // Convert the createdAt date to a moment object
-    //     const currentDate = moment(); // Get the current date as a moment object
-    //     const isOlderThan4Years = createdAtDate.isBefore(
-    //       currentDate.subtract(4, "years")
-    //     );
-
-    //     return (
-    //       <div>
-    //         {isOlderThan4Years && (
-    //           <Button
-    //             style={{ color: "red", cursor: "pointer" }}
-    //             onClick={() => {
-    //               deleteSelectedBill(record);
-    //             }}
-    //           >
-    //             Delete
-    //           </Button>
-    //         )}
-    //       </div>
-    //     );
-    //   },
-    // },
-
     {
       title: "Print's",
       dataIndex: "_id",
@@ -671,151 +534,53 @@ const Doctors = () => {
         >
           {/* ============ invoice modal start ==============  */}
           <div ref={componentRef} style={{ marginRight: "0px" }}>
-            {/* <div
-              style={{
-                "margin-left": "400px",
-                "margin-top": "0px",
-                // border: "5px solid black",
-              }}
-            >
-              <div style={{ "margin-top": "185px", "margin-left": "133px" }}>
-                <p>
-                  {selectedBill.firstName} {selectedBill.lastName}
-                </p>
-              </div>
-              <div style={{ "margin-top": "-10px" }}>
-                <span style={{ "margin-left": "60px" }}>
-                  {selectedBill.age}
-                </span>
-
-                <span
-                  style={{ "margin-left": "438.5px", "margin-top": "10px" }}
-                >
-                  {selectedBill.birth}
-                </span>
-              </div>
-
-              <div style={{ "margin-top": "65px" }}>
-                <span style={{ "margin-left": "40px" }}>
-                  {selectedBill.class}
-                </span>
-                <span style={{ "margin-left": "65px" }}>
-                  {selectedBill.period}
-                </span>
-                <span style={{ "margin-left": "76px", "margin-top": "-5px" }}>
-                  {selectedBill.from}
-                </span>
-                <span style={{ "margin-left": "76px" }}>{selectedBill.to}</span>
-              </div>
-
-              <div style={{ "margin-top": "40px" }}>
-                <span style={{ "margin-left": "301.6px" }}>
-                  {selectedBill.previousno}
-                </span>
-                <span
-                  style={{ "margin-left": "269.2px", "margin-top": "15px" }}
-                >
-                  {selectedBill.previousticket}
-                </span>
-              </div>
-
-              <div style={{ "margin-top": "1px" }}>
-                <span style={{ "margin-left": "55.8px" }}>
-                  {selectedBill.previousfrom}
-                </span>{" "}
-                <span style={{ "margin-left": "94.5px" }}>
-                  {selectedBill.previousto}
-                </span>
-              </div>
-            </div> */}
-
-            {/* <div
-              style={{
-                display: "flex",
-                float: "right",
-                marginRight: "0px",
-                marginLeft: "250px",
-                border: "2px solid blue",
-              }}
-            >
-              <div>
-                <div className="favour">abc</div>
-                <div className="left">
-                  <span className="lclass">1st </span>
-                  <span className="lperiod">monthly</span>
-                  <span>WADALA</span>
-                  <span className="leftTo">MATUNGA</span>
-                </div>
-                <div className="lprev">7890</div>
-                <div className="ldate">end Date</div>
-                <div />
-              </div>
-              <div
-                style={{
-                  float: "right",
-                  marginRight: 95,
-                  // border: "2px solid red",
-                }}
-              >
-                <p className="name mt-204"> ashwath Dange</p>
-                <div>
-                  <p className="age">
-                    20 <span className="date">8/10/22</span>
-                  </p>
-                </div>
-                <div className="chart">
-                  <span className="currClass">1</span>{" "}
-                  <span className="currPeriod">Monthly</span>{" "}
-                  <span className="currFrom">Wadala</span>{" "}
-                  <span className="currTo">thane</span>
-                </div>
-                <div className="prev1">
-                  {" "}
-                  <span className="prevClass">1</span>{" "}
-                  <span className="prevTicket">8458523</span>
-                </div>
-                <div className="prev2">
-                  <span className="prevFrom">Wadala</span>{" "}
-                  <span className="prevTo">Matunga</span>
-                </div>
-              </div>
-            </div> */}
-
             <div style={{ textAlign: "right" }}>
-              <div className="name">Yadnesh Mahajan</div>
-              <div className="abc">abc</div>
+              <div className="name">
+                {selectedBill.firstName} {selectedBill.lastName}
+              </div>
+              <div className="abc">
+                {selectedBill.firstName} {selectedBill.lastName}
+              </div>
               <div className="birth">
-                <span className="age">20</span>
-                <span className="birthdate">8/10/2002</span>
+                <span className="age">{selectedBill.age}</span>
+                <span className="birthdate">
+                  {new Date(`${selectedBill.birth}`).toLocaleDateString()}
+                </span>
               </div>
               <div className="box">
-                <span className="lclass">1st</span>
-                <span className="lperiod">monthly</span>
-                <span className="lfrom">wadala</span>
-                <span className="lto">Panvel</span>
-                <span className="rclass">1st</span>
-                <span className="rperiod">monthly</span>
-                <span className="rfrom">wadala</span>
-                <span className="rto">Panvel</span>
+                <span className="lclass">{selectedBill.class}</span>
+                <span className="lperiod">{selectedBill.period}</span>
+                <span className="lfrom">{selectedBill.from}</span>
+                <span className="lto">{selectedBill.to}</span>
+                <span className="rclass">{selectedBill.class}</span>
+                <span className="rperiod">{selectedBill.period}</span>
+                <span className="rfrom">{selectedBill.from}</span>
+                <span className="rto">{selectedBill.to}</span>
               </div>
-              <div style={{ marginTop: "30px" }}>
-                <span className="prvclass">1st</span>
-                <span className="prvticketno">1234</span>
+              <div style={{ marginTop: "25px" }}>
+                <span className="prvclass">{selectedBill.prevClass}</span>
+                <span className="prvticketno">{selectedBill.previousno}</span>
               </div>
               <div>
-                <span className="prevfrom">alibag</span>
-                <span className="prevto">nashik</span>
+                <span className="prevfrom">{selectedBill.previousfrom}</span>
+                <span className="prevto">{selectedBill.previousto}</span>
               </div>
-              <div className="enddate">10/07/2023</div>
-              <div className="lprevticketno">5678</div>
-              <div className="lprevenddate">10/07/2023</div>
+              <div className="enddate">
+                {new Date(`${selectedBill.timingsends}`).toLocaleDateString()}
+              </div>
+              <div className="lprevticketno">{selectedBill.previousno}</div>
+              <div className="lprevenddate">
+                {new Date(`${selectedBill.timingsends}`).toLocaleDateString()}
+              </div>
+              <div className="lprevenddate"></div>
             </div>
+          </div>
 
+          <div className="d-flex justify-content-end mt-3 ">
             <Button
-              className="d-flex justify-content-end mt-3"
               type="primary"
-              style={{ color: "blue" }}
               onClick={handlePrint}
+              className="text-black bg-green-500"
             >
               Print
             </Button>

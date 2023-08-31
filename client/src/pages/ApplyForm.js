@@ -27,7 +27,7 @@ const ApplyForm = () => {
       );
       dispatch(hideLoading);
       if (res.data.success) {
-        message.success(res.data.success);
+        message.success(res.data.message);
         navigate("/");
       } else {
         message.error(res.data.success);
@@ -40,8 +40,9 @@ const ApplyForm = () => {
   };
   return (
     <Layout>
-      <h1 className="text-center">Apply For Concession </h1>
-      <Form layout="vertical" onFinish={handleFinish} className="m-3">
+      <h1 className="text-center">Apply For Railway Concession </h1>
+      <hr></hr>
+      <Form layout="vertical" onFinish={handleFinish} className="m-3 ">
         <h4>Personal Details :</h4>
         <Row gutter={20}>
           <Col xs={24} md={24} lg={8}>
@@ -112,7 +113,7 @@ const ApplyForm = () => {
               required
               rules={[{ required: true }]}
             >
-              <Input type="text" placeholder="registration no" />
+              <Input type="text" placeholder="xxxxxxxx" />
             </Form.Item>
           </Col>
           <Col xs={24} md={24} lg={8}>
@@ -146,8 +147,10 @@ const ApplyForm = () => {
               required
               rules={[{ required: true }]}
             >
-              <Select placeholder="Select you'r caste">
+              <Select placeholder="Select Caste">
                 <Select.Option value="Open"></Select.Option>
+                <Select.Option value="OBC"></Select.Option>
+                <Select.Option value="NT"></Select.Option>
                 <Select.Option value="SC"></Select.Option>
                 <Select.Option value="ST"></Select.Option>
               </Select>
@@ -157,6 +160,7 @@ const ApplyForm = () => {
         {/* railway details */}
         <h4 style={{ marginBottom: "10px" }}>
           {" "}
+          <hr className="w-full text-sm text-gray-400"></hr>
           Previous Form Details{" "}
           <h6 style={{ color: "gray" }}>
             (If Applying for First time no need for this section details){" "}
@@ -165,68 +169,37 @@ const ApplyForm = () => {
 
         <Row gutter={20}>
           <Col xs={24} md={24} lg={8}>
-            <Form.Item
-              label="From "
-              name="previousfrom"
-              // required
-              // rules={[{ required: true }]}
-            >
-              {/* <RangePicker /> */}
-              <Input type="text" placeholder="previous from " />
+            <Form.Item label="From " name="previousfrom">
+              <Input type="text" placeholder="Previous From " />
             </Form.Item>
           </Col>
           <Col xs={24} md={24} lg={8}>
-            <Form.Item
-              label="To "
-              name="previousto"
-              // required
-              // rules={[{ required: true }]}
-            >
-              {/* <RangePicker /> */}
-              <Input type="text" placeholder="previous to " />
+            <Form.Item label="To " name="previousto">
+              <Input type="text" placeholder="Previous To " />
             </Form.Item>
           </Col>
 
           <Col xs={24} md={24} lg={8}>
-            <Form.Item
-              label="Class"
-              name="previousno"
-              // required
-              // rules={[{ required: true }]}
-            >
-              {/* <RangePicker /> */}
-              <Select placeholder="Class">
+            <Form.Item label="Class" name="prevClass">
+              <Select placeholder="Previous Class">
                 <Select.Option value="1st"></Select.Option>
                 <Select.Option value="2nd"></Select.Option>
               </Select>
-              {/* <Input type="text" placeholder="previous no" /> */}
             </Form.Item>
           </Col>
           <Col xs={24} md={24} lg={8}>
-            <Form.Item
-              label="End Date of your pass"
-              name="timingsends"
-              // required
-              // rules={[{ required: true }]}
-            >
+            <Form.Item label="End Date of your pass" name="timingsends">
               <DatePicker />
             </Form.Item>
           </Col>
+
           <Col xs={24} md={24} lg={8}>
-            <Form.Item
-              label="Ticket No"
-              name="previousticket"
-              // required
-              rules={[{ max: 4 }]}
-            >
-              {/* <RangePicker /> */}
-              <Input type="text" placeholder="previous ticket no " />
-              <small style={{ color: "blue" }}>
-                Last Four digits of Previous Ticket No needed
-              </small>
+            <Form.Item label="Previous Ticket No " name="previousno">
+              <Input type="text" placeholder="Last Four Digits of Ticket No" />
             </Form.Item>
           </Col>
         </Row>
+        <hr className="w-full text-sm text-gray-400"></hr>
         <h4>New Applicants</h4>
         <Row gutter={"20"}>
           <Col xs={24} md={24} lg={8}>
@@ -262,9 +235,7 @@ const ApplyForm = () => {
               <Select placeholder="Class">
                 <Select.Option value="1st"></Select.Option>
                 <Select.Option value="2nd"></Select.Option>
-                {/* <Select.Option value="ST"></Select.Option> */}
               </Select>
-              {/* <Input type="text" placeholder="class" /> */}
             </Form.Item>
           </Col>
           <Col xs={24} md={24} lg={8}>
@@ -274,25 +245,13 @@ const ApplyForm = () => {
               required
               rules={[{ required: true }]}
             >
-              {/* <RangePicker /> */}
               <Select placeholder="Period">
                 <Select.Option value="Monthly"></Select.Option>
-                <Select.Option value="Quaterly"></Select.Option>
+                <Select.Option value="Quarterly"></Select.Option>
                 <Select.Option value="Half Yearly"></Select.Option>
               </Select>
-              {/* <Input type="text" placeholder="period" /> */}
             </Form.Item>
           </Col>
-          {/* <Col xs={24} md={24} lg={8}>
-            <Form.Item
-              label="Season Ticket No"
-              name="seasonticketNo"
-              // required
-              // rules={[{ required: true }]}
-            >
-              <Input type="text" placeholder="Season Ticket no" />
-            </Form.Item>
-          </Col> */}
           <Col xs={24} md={24} lg={8}></Col>
           <Col xs={24} md={24} lg={8}>
             <button
