@@ -207,7 +207,7 @@ router.post("/sendpasswordlink", async (req, res) => {
       { new: true }
     );
     // console.log("setusertoken", setusertoken);
-    const resetPasswordLink = `https://railway-production-2.onrender.com/forgotpassword/${userfind.id}/${setusertoken.verifytoken}`;
+    const resetPasswordLink = `https://railway-concession-prod.onrender.com/forgotpassword/${userfind.id}/${setusertoken.verifytoken}`;
 
     if (setusertoken) {
       const mailOptions = {
