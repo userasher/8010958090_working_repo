@@ -28,7 +28,7 @@ import "@trussworks/react-uswds/lib/index.css";
 import flagImg from "../Assets/download.png";
 import dotGovIcon from "../Assets/govicon.svg";
 import httpsIcon from "../Assets/secureicon.svg";
-
+import Footerbyme from "../components/Footer.js";
 const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -206,6 +206,7 @@ const Login = () => {
           </div>
         </div>
       </Banner>
+      <Footerbyme />
     </div>
   );
 };
