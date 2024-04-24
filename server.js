@@ -187,6 +187,13 @@ app.use("/api/v1/admin", require("./routes/adminRoutes"));
 // app.get("*", function (req, res) {
 //   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 // });
+
+// app.use(express.json());
+// // code for experiment purpose
+// app.post("/api/user/create", (req, res) => {
+//   res.send(req.body);
+// });
+
 if (process.env.NODE_ENV === "production") {
   //*Set static folder up in production
   app.use(express.static("client/build"));

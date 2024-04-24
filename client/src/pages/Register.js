@@ -12,13 +12,21 @@ const Register = () => {
   const dispatch = useDispatch();
 
   const onfinishHandler = async (values) => {
+    console.log(values);
+    const EmailData = {
+      email: values.email,
+    };
     try {
       dispatch(showLoading());
-      const res = await axios.post("/api/v1/user/register", values);
+      const res = await axios.post("/api/v1/user/OTP", EmailData);
+      localStorage.setItem("registereduser", JSON.stringify(values));
       dispatch(hideLoading());
+      console.log(res.data);
+      console.log(res.data.otp);
       if (res.data.success) {
-        message.success("Register Successfully!");
-        navigate("/login");
+        // message.success("Registered Successfully!");
+        localStorage.setItem("OTP", res.data.otp);
+        navigate("/email-verification");
       } else {
         message.error(res.data.message);
       }

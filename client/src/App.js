@@ -14,6 +14,7 @@ import GeneratePdf from "./pages/GeneratePdf";
 import PasswordReset from "./pages/PasswordReset";
 import ForgotPassword from "./pages/ForgotPassword";
 import ProtectedRoute1 from "./components/ProtectedRoute1";
+import EmailVerification from "./pages/otpVerfication";
 
 function App() {
   const { loading } = useSelector((state) => state.alerts);
@@ -67,6 +68,14 @@ function App() {
                 <ProtectedRoute>
                   <NotificationPage />
                 </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/email-verification"
+              element={
+                <PublicRoute>
+                  <EmailVerification />
+                </PublicRoute>
               }
             />
             <Route

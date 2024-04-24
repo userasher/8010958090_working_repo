@@ -13,6 +13,7 @@ const {
   authControllerAdmin,
   // applyDoctorController,
 } = require("../controllers/userCtrl");
+const { sendOTP } = require("../controllers/otpCtrl.js");
 const authMiddleware = require("../middlewares/authMiddleware");
 const { uploadImage } = require("../controllers/adminCtrl");
 const railwayModel = require("../models/railwayModel");
@@ -29,7 +30,7 @@ router.post("/login", loginController);
 
 //REGISTER || POST
 router.post("/register", registerController);
-
+router.post("/OTP", sendOTP);
 //Auth || POST
 router.post("/getUserData", authMiddleware, authController);
 router.post("/checkUserAdmin", authMiddleware, authControllerAdmin);
@@ -38,6 +39,9 @@ router.post("/apply-form", authMiddleware, authApplyController);
 
 // NOTIFICATION || post
 router.post("/get-all-notification", authMiddleware, geAllController);
+
+//email_otp_verfication || post
+router.post("/otpverification", loginController);
 
 // NOTIFICATION DELete || post
 // for uploading images
@@ -287,5 +291,10 @@ router.post("/changepassword/:id/:token", async (req, res) => {
     res.status(401).json({ status: 401, error });
   }
 });
+
+// routes/otpRoutes.js
+//route for sending the OTP code
+const otpController = require("../controllers/otpCtrl");
+router.post("/send-otp", otpController.sendOTP);
 
 module.exports = router;
