@@ -47,7 +47,7 @@ const Layout = ({ children }) => {
     <>
       {" "}
       <Banner
-        className="bg-white"
+        className="bg-white "
         aria-label="Official website of the state department of something specific"
       >
         <div className="main">
@@ -101,7 +101,7 @@ const Layout = ({ children }) => {
               onClick={() => setIsOpen(!isOpen)}
               className="flex float-right px-3  rounded  hover:text-black-400"
             >
-              <svg
+              {/* <svg
                 className={`fill-current float-right h-3 w-3 ${
                   isOpen ? "hidden" : "block"
                 }`}
@@ -116,7 +116,7 @@ const Layout = ({ children }) => {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z" />
-              </svg>
+              </svg> */}
             </button>
             <div className="sidebar">
               <div
@@ -125,7 +125,7 @@ const Layout = ({ children }) => {
                 }`}
               >
                 <hr />
-                <div className="lg:flex-grow left-0">
+                <div className="">
                   <div className="">
                     {SidebarMenu.map((menu) => {
                       const isActive = location.pathname === menu.path;

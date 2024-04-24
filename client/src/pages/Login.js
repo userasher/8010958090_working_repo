@@ -42,7 +42,7 @@ const Login = () => {
       dispatch(hideLoading());
       if (res.data.success) {
         localStorage.setItem("token", res.data.token);
-        message.success("Login Successfully");
+        message.success("Login Successfull");
         navigate("/");
       } else {
         message.error(res.data.message);
@@ -197,7 +197,7 @@ const Login = () => {
               <div class="pt-4 text-center mt-2 ">
                 <Link
                   to="/register"
-                  className="bg-blue-500 border-black hover:bg-blue-700 text-white font-bold py-2 px-4 rounded no-underline "
+                  className="bg-blue-500 border-black hover:bg-blue-700 text-white font-bold py-2 px-20 rounded no-underline "
                 >
                   Register
                 </Link>
