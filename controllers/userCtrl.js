@@ -14,7 +14,7 @@ const registerController = async (req, res) => {
     if (exisitingUser) {
       return res
         .status(200)
-        .send({ message: "User Already Exist", success: false });
+        .send({ message: "User Already Exists", success: false });
     }
     const password = req.body.password;
     const salt = await bcrypt.genSalt(10);
