@@ -14,7 +14,12 @@ import GeneratePdf from "./pages/GeneratePdf";
 import PasswordReset from "./pages/PasswordReset";
 import ForgotPassword from "./pages/ForgotPassword";
 import ProtectedRoute1 from "./components/ProtectedRoute1";
+<<<<<<< HEAD
 import EmailVerification from "./pages/otpVerfication";
+=======
+import Sidebar from "./components/Sidebar.js";
+import Footer from "./components/Footer.js";
+>>>>>>> e7d5399 (layout added)
 
 function App() {
   const { loading } = useSelector((state) => state.alerts);
@@ -22,6 +27,13 @@ function App() {
   return (
     <>
       <BrowserRouter>
+        {localStorage.getItem("token") ? (
+          <>
+            <Sidebar />
+          </>
+        ) : (
+          ""
+        )}
         {loading ? (
           <Spinner />
         ) : (
@@ -70,6 +82,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
+
             <Route
               path="/email-verification"
               element={
@@ -113,6 +126,7 @@ function App() {
             <Route path="*" element={<ErrorPage />} />
           </Routes>
         )}
+        <Footer />
       </BrowserRouter>
     </>
   );

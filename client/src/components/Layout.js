@@ -32,7 +32,8 @@ import httpsIcon from "../Assets/secureicon.svg";
 
 import Footerbyme from "./Footer";
 const Layout = ({ children }) => {
-  const { user } = useSelector((state) => state.user);
+  // const { user } = useSelector((state) => state.user);
+  // console.log(user);
   const location = useLocation();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
@@ -42,7 +43,7 @@ const Layout = ({ children }) => {
     message.success("Logout Successfully");
     navigate("/login");
   };
-  const SidebarMenu = user?.isAdmin ? adminMenu : userMenu;
+  // const SidebarMenu = user?.isAdmin ? adminMenu : userMenu;
   return (
     <>
       <Banner
@@ -99,6 +100,7 @@ const Layout = ({ children }) => {
             </div>
           </BannerContent>
           <div className="layout">
+<<<<<<< HEAD
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="flex float-right px-3  rounded  hover:text-black-400"
@@ -152,18 +154,20 @@ const Layout = ({ children }) => {
                 </div>
               </div>
             </div>
+=======
+>>>>>>> e7d5399 (layout added)
             <div className="content">
               <div className="header">
                 <div className="header-content" style={{ cursor: "pointer" }}>
                   <Badge
-                    count={user && user.notifcation.length}
+                    // count={user && user.notifcation.length}
                     onClick={() => {
                       navigate("/notification");
                     }}
                   >
                     <i class="fa-solid fa-bell"></i>
                   </Badge>
-                  <Link to="/">{user?.name}</Link>
+                  {/* <Link to="/">{user?.name}</Link> */}
                 </div>
               </div>
               <div className="body">{children}</div>
@@ -171,7 +175,6 @@ const Layout = ({ children }) => {
           </div>
         </div>
       </Banner>
-      <Footerbyme className="mt-5" />
     </>
   );
 };
