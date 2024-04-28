@@ -206,7 +206,7 @@ const Login = () => {
           </div>
         </div>
       </Banner>
-      <Footerbyme />
+      {/* <Footerbyme /> */}
     </div>
   );
 };
