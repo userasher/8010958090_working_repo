@@ -12,7 +12,7 @@ const Register = () => {
   const dispatch = useDispatch();
 
   const onfinishHandler = async (values) => {
-    console.log(values);
+    // console.log(values);
     const EmailData = {
       email: values.email,
     };
@@ -21,12 +21,13 @@ const Register = () => {
       const res = await axios.post("/api/v1/user/OTP", EmailData);
       localStorage.setItem("registereduser", JSON.stringify(values));
       dispatch(hideLoading());
-      console.log(res.data);
-      console.log(res.data.otp);
+      // console.log(res.data);
+      // console.log(res.data.otp);
       if (res.data.success) {
         // message.success("Registered Successfully!");
         localStorage.setItem("OTP", res.data.otp);
         navigate("/email-verification");
+        message.success("Enter OTP to verify email");
       } else {
         message.error(res.data.message);
       }

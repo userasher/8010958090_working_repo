@@ -45,7 +45,6 @@ const Layout = ({ children }) => {
   const SidebarMenu = user?.isAdmin ? adminMenu : userMenu;
   return (
     <>
-      {" "}
       <Banner
         className="bg-white "
         aria-label="Official website of the state department of something specific"
@@ -70,7 +69,10 @@ const Layout = ({ children }) => {
           <BannerContent id="custom-banner" isOpen={isOpen}>
             <div className="grid-row grid-gap-lg">
               <BannerGuidance className="tablet:grid-col-6">
-                <BannerIcon src={dotGovIcon} alt="" />
+                <BannerIcon
+                  src={dotGovIcon}
+                  alt="image of the official flag of United states of America"
+                />
                 <MediaBlockBody>
                   <p>
                     <strong>Official websites use .gov</strong>
